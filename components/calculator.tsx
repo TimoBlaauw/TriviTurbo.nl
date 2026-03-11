@@ -313,8 +313,8 @@ export function Calculator() {
   const ctaContent = getCtaContent()
 
   return (
-    <section id="calculator" className="py-20 md:py-28 bg-white scroll-mt-20">
-      <div className="container mx-auto px-4">
+    <section id="calculator" className="py-20 md:py-28 bg-white scroll-mt-20 overflow-x-hidden">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="max-w-4xl mx-auto">
           {/* Card */}
           <div
@@ -730,9 +730,9 @@ export function Calculator() {
                     <Button
                       onClick={openPopup}
                       data-popup-target="gratis-voorbeeldwebsite-formulier"
-                      className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base"
+                      className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-4 sm:px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all text-sm sm:text-base w-full sm:w-auto"
                     >
-                      {ctaContent.button}
+                      <span className="whitespace-normal sm:whitespace-nowrap">{ctaContent.button}</span>
                     </Button>
                   </div>
 
