@@ -68,7 +68,7 @@ export function SiteFooter() {
                 alt="TriviTurbo Logo"
                 width={140}
                 height={40}
-                className="h-8 w-auto brightness-0 invert"
+                className="max-h-8 w-auto brightness-0 invert"
               />
             </div>
 

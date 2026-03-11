@@ -42,8 +42,7 @@ export function Header() {
                 alt="TriviTurbo Logo"
                 width={150}
                 height={40}
-                className="h-8 md:h-10"
-                style={{ width: 'auto', height: 'auto' }}
+                className="max-h-8 md:max-h-10 w-auto"
                 priority
               />
             </a>
