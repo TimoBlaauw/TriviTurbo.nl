@@ -47,7 +47,7 @@ export function Portfolio() {
             LIVE VOORBEELD
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#072AC8] leading-tight mb-6 text-balance">
-            Voorbeeldwebsite die we hebben gebouwd
+            Vakantiehuiswebsite die we hebben gebouwd
           </h2>
           <p className="text-lg text-[#4b5b8a] leading-relaxed">
             Wil je eerst zien wat je krijgt? Dit is één van de website die we al hebben opgeleverd:
