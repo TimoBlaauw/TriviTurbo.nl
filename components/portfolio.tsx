@@ -32,7 +32,7 @@ export function Portfolio() {
   const ctaAnimation = useScrollAnimation<HTMLDivElement>()
 
   return (
-    <section id="voorbeeld" className="py-20 md:py-28 bg-white scroll-mt-20">
+    <section id="voorbeeld" className="py-20 md:py-28 bg-white scroll-mt-20 overflow-x-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div
@@ -206,9 +206,9 @@ export function Portfolio() {
             <Button
               onClick={openPopup}
               size="lg"
-              className="bg-[#FCF300] text-[#072AC8] hover:bg-[#FCF300]/90 font-bold text-base sm:text-lg px-10 py-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+              className="bg-[#FCF300] text-[#072AC8] hover:bg-[#FCF300]/90 font-bold text-sm sm:text-base md:text-lg px-6 sm:px-10 py-5 sm:py-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto max-w-full"
             >
-              BOUW MIJN GRATIS VOORBEELDWEBSITE NU
+              <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE NU</span>
             </Button>
           </div>
         </div>

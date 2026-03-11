@@ -15,7 +15,7 @@ import { LeadFormPopup } from "@/components/lead-form-popup"
 export default function Home() {
   return (
     <PopupProvider>
-      <main className="min-h-screen">
+      <main className="min-h-screen overflow-x-hidden">
         <Header />
         <Hero />
         <Problems />

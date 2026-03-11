@@ -313,7 +313,7 @@ export function Calculator() {
   const ctaContent = getCtaContent()
 
   return (
-    <section id="calculator" className="py-20 md:py-28 bg-white scroll-mt-20">
+    <section id="calculator" className="py-20 md:py-28 bg-white scroll-mt-20 overflow-x-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Card */}
@@ -730,9 +730,9 @@ export function Calculator() {
                     <Button
                       onClick={openPopup}
                       data-popup-target="gratis-voorbeeldwebsite-formulier"
-                      className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base"
+                      className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-4 sm:px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all text-sm sm:text-base w-full sm:w-auto"
                     >
-                      {ctaContent.button}
+                      <span className="whitespace-normal sm:whitespace-nowrap">{ctaContent.button}</span>
                     </Button>
                   </div>
 
@@ -742,7 +742,7 @@ export function Calculator() {
                     <strong>extra directe boekingen bovenop je huidige platformboekingen</strong>. Dus niet met een
                     verschuiving van platformen naar je website, maar met extra omzetkansen via je eigen kanaal. De
                     berekening gebruikt jouw ingevulde gemiddelde platform-fee-percentage en vaste websitekosten van{" "}
-                    <strong>{"€1.997"}</strong>.
+                    <strong>{"1.997"}</strong>.
                   </div>
 
                   <div className="flex justify-start">

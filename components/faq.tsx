@@ -27,12 +27,12 @@ const faqs = [
   {
     question: "Geven jullie garantie op resultaat?",
     answer:
-      "Ja. Krijg je binnen 90 dagen geen 3 directe boekingen? Dan krijg je je volledige €1.997 terug.",
+      "Ja. Krijg je binnen 90 dagen geen 3 directe boekingen? Dan krijg je je volledige 1.997 terug.",
   },
   {
     question: "Wat kost dit vergeleken met platformkosten?",
     answer:
-      "De investering is €1.997. De meeste verhuurders verliezen al meer dan dat aan platformkosten bij slechts 10 tot 15 boekingen.",
+      "De investering is 1.997. De meeste verhuurders verliezen al meer dan dat aan platformkosten bij slechts 10 tot 15 boekingen.",
   },
   {
     question: "Wat als ik niet technisch ben?",

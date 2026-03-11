@@ -8,7 +8,7 @@ export function Hero() {
   const { openPopup } = usePopup()
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-x-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#072AC8] via-[#0095FF] to-[#01BCFF]">
         {/* Geometric Circle Pattern */}
@@ -45,7 +45,7 @@ export function Hero() {
       <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Copy */}
-          <div className="text-white">
+          <div className="text-white overflow-hidden">
             {/* Eyebrow */}
             <p className="text-[#FCF300] font-bold text-sm tracking-wider uppercase mb-4 animate-fade-in">
               LET OP, VAKANTIEHUISEIGENAREN
@@ -63,8 +63,8 @@ export function Hero() {
               <strong className="text-[#FCF300]">{"€2.000–€5.000"}</strong> kwijt bent aan platformkosten.
             </p>
 
-            {/* Support line */}
-            <p className="text-white/80 mb-6">
+            {/* Support line - hidden on mobile for cleaner layout */}
+            <p className="hidden lg:block text-white/80 mb-6">
               Bekijk eerst gratis jouw persoonlijke voorbeeldwebsite, voordat je iets betaalt.
             </p>
 
@@ -94,9 +94,9 @@ export function Hero() {
               <Button
                 onClick={openPopup}
                 size="lg"
-                className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-base px-8 py-6 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group"
+                className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-sm sm:text-base px-4 sm:px-8 py-5 sm:py-6 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group w-full sm:w-auto"
               >
-                BOUW MIJN GRATIS VOORBEELDWEBSITE NU
+                <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE NU</span>
               </Button>
             </div>
 
@@ -108,7 +108,7 @@ export function Hero() {
 
 
             {/* Trust Row with Stars and Avatars */}
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               {/* Avatar Group */}
               <div className="flex -space-x-2">
                 <img

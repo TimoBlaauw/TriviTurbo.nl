@@ -45,13 +45,13 @@ export function SiteFooter() {
               platformen.
             </p>
 
-            <div className="flex justify-center px-4">
+            <div className="flex justify-center px-2 sm:px-4">
               <Button
                 onClick={openPopup}
                 size="lg"
-                className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-base md:text-lg px-8 md:px-12 py-6 md:py-7 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 w-full sm:w-auto max-w-full"
+                className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-sm sm:text-base md:text-lg px-4 sm:px-8 md:px-12 py-5 sm:py-6 md:py-7 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 w-full sm:w-auto max-w-full"
               >
-                BOUW MIJN GRATIS VOORBEELDWEBSITE NU
+                <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE NU</span>
               </Button>
             </div>
           </div>
