@@ -4,17 +4,17 @@ import React from "react"
 import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import {
-  Monitor,
-  Rocket,
-  CalendarCheck,
-  Check,
-  Smartphone,
-  Users,
-  Clock,
-  RefreshCcw,
-  Zap,
-  PiggyBank,
+import { 
+  Monitor, 
+  Rocket, 
+  CalendarCheck, 
+  Check, 
+  Smartphone, 
+  Users, 
+  Clock, 
+  RefreshCcw, 
+  Zap, 
+  PiggyBank 
 } from "lucide-react"
 
 const steps = [
