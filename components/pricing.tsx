@@ -65,7 +65,7 @@ export function Pricing() {
             <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-8 md:p-10 text-center">
               <p className="text-white/80 font-semibold mb-2">Het Directe Boekingskanaal-systeem</p>
               <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="text-5xl md:text-6xl font-black text-white">{"€1.997"}</span>
+                <span className="text-5xl md:text-6xl font-black text-white">{"1.997"}</span>
               </div>
               <p className="text-white/70 text-sm">Eenmalige investering</p>
             </div>
@@ -101,7 +101,7 @@ export function Pricing() {
                   <div>
                     <h4 className="font-bold text-[#072AC8] text-lg mb-2">90-dagen resultaatgarantie</h4>
                     <p className="text-[#4b5b8a] leading-relaxed">
-                      Krijg je binnen 90 dagen geen 3 directe boekingen? Dan krijg je je volledige {"€1.997"} terug.
+                      Krijg je binnen 90 dagen geen 3 directe boekingen? Dan krijg je je volledige {"1.997"} terug.
                       Geen vragen, geen gedoe.
                     </p>
                   </div>
@@ -115,7 +115,7 @@ export function Pricing() {
                   Wat kost dit vergeleken met platformkosten?
                 </h4>
                 <p className="text-[#4b5b8a] leading-relaxed">
-                  De meeste verhuurders verliezen al meer dan {"€1.997"} aan platformkosten bij slechts{" "}
+                  De meeste verhuurders verliezen al meer dan {"1.997"} aan platformkosten bij slechts{" "}
                   <strong className="text-[#072AC8]">10 tot 15 boekingen</strong>. Met je eigen directe boekingskanaal
                   verdien je deze investering vaak al terug bij je eerste paar directe boekingen.
                 </p>

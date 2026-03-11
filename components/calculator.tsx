@@ -742,7 +742,7 @@ export function Calculator() {
                     <strong>extra directe boekingen bovenop je huidige platformboekingen</strong>. Dus niet met een
                     verschuiving van platformen naar je website, maar met extra omzetkansen via je eigen kanaal. De
                     berekening gebruikt jouw ingevulde gemiddelde platform-fee-percentage en vaste websitekosten van{" "}
-                    <strong>{"€1.997"}</strong>.
+                    <strong>{"1.997"}</strong>.
                   </div>
 
                   <div className="flex justify-start">
