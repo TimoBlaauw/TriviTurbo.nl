@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+
 import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
 
@@ -63,12 +63,10 @@ export function SiteFooter() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <Image
+              <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Trivi-Turbo-Logo-9FgJYGnIpjwFGebhk7V6xDrblbKtYC.png"
                 alt="TriviTurbo Logo"
-                width={140}
-                height={40}
-                className="max-h-8 w-auto brightness-0 invert"
+                className="h-8 w-auto brightness-0 invert"
               />
             </div>
 

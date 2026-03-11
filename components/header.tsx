@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
@@ -37,13 +36,10 @@ export function Header() {
         >
           <div className="px-4 md:px-6 py-3 flex items-center justify-between">
             <a href="#" className="flex items-center gap-2 flex-shrink-0">
-              <Image
+              <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Trivi-Turbo-Logo-9FgJYGnIpjwFGebhk7V6xDrblbKtYC.png"
                 alt="TriviTurbo Logo"
-                width={150}
-                height={40}
-                className="max-h-8 md:max-h-10 w-auto"
-                priority
+                className="h-8 md:h-10 w-auto"
               />
             </a>
 
