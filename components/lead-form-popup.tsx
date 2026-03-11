@@ -146,6 +146,7 @@ export function LeadFormPopup() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Voer een geldig e-mailadres in"
     }
+    if (!formData.phone.trim()) newErrors.phone = "Telefoonnummer is verplicht"
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -331,14 +332,18 @@ export function LeadFormPopup() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">Telefoon/WhatsApp (optioneel)</label>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">
+                  Telefoon/WhatsApp <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => updateField("phone", e.target.value)}
                   placeholder="+31 6 12345678"
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] placeholder:text-[#8ba0d7] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 focus:border-[#0095FF] transition-all"
+                  className={`w-full px-4 py-3 rounded-xl border ${errors.phone ? "border-red-400" : "border-[#072AC8]/12"
+                    } bg-white text-[#072AC8] placeholder:text-[#8ba0d7] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 focus:border-[#0095FF] transition-all`}
                 />
+                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
               </div>
 
               <div>
@@ -569,8 +574,10 @@ export function LeadFormPopup() {
 
                       {formData.managesOwnBooking === "yes" && (
                         <>
-                          <option value="requests">Alleen aanvragen</option>
-                          <option value="calendar">Kalender + boekingsaanvraag</option>
+                          <option value="requests">Alleen aanvraag (ik bevestig handmatig)</option>
+                          <option value="calendar">Kalender + aanvraag (beschikbaarheid zichtbaar)</option>
+                          <option value="direct">Direct boeken + online betalen</option>
+                          <option value="sync">Agenda automatisch up-to-date (Airbnb/Booking) + aanvraag</option>
                         </>
                       )}
 
@@ -582,8 +589,10 @@ export function LeadFormPopup() {
 
                       {formData.managesOwnBooking === "unknown" && (
                         <>
-                          <option value="requests">Alleen aanvragen</option>
-                          <option value="calendar">Kalender + boekingsaanvraag</option>
+                          <option value="requests">Alleen aanvraag (ik bevestig handmatig)</option>
+                          <option value="calendar">Kalender + aanvraag (beschikbaarheid zichtbaar)</option>
+                          <option value="direct">Direct boeken + online betalen</option>
+                          <option value="sync">Agenda automatisch up-to-date (Airbnb/Booking) + aanvraag</option>
                           <option value="redirect">
                             Doorklik naar officiële boekingspagina van beheerder/park (bijv. Landal/Roompot) + korte uitleg op de site
                           </option>

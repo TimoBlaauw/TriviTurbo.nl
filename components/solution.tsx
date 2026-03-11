@@ -5,9 +5,9 @@ import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import {
-  FileImage,
+  Monitor,
   Rocket,
-  MessageSquare,
+  CalendarCheck,
   Check,
   Smartphone,
   Users,
@@ -23,7 +23,7 @@ const steps = [
     title: "Wij bouwen gratis jouw persoonlijke voorbeeldwebsite",
     description:
       "Je ziet precies hoe jouw directe boekingskanaal eruit komt te zien, op basis van jouw echte foto's en woninginformatie. Geen giswerk. Geen verrassingen. Je betaalt nog niets.",
-    icon: FileImage,
+    icon: Monitor,
   },
   {
     number: "2",
@@ -37,7 +37,7 @@ const steps = [
     title: "Ontvang directe boekingen",
     description:
       "Je systeem gaat live met een professionele presentatie, een mobielvriendelijk ontwerp en formulieren die bezoekers omzetten in boekingen.",
-    icon: MessageSquare,
+    icon: CalendarCheck,
   },
 ]
 
