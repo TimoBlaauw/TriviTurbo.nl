@@ -314,7 +314,7 @@ export function Calculator() {
 
   return (
     <section id="calculator" className="py-20 md:py-28 bg-white scroll-mt-20 overflow-x-hidden">
-      <div className="container mx-auto px-4 max-w-full">
+      <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Card */}
           <div

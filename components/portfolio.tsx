@@ -33,7 +33,7 @@ export function Portfolio() {
 
   return (
     <section id="voorbeeld" className="py-20 md:py-28 bg-white scroll-mt-20 overflow-x-hidden">
-      <div className="container mx-auto px-4 max-w-full">
+      <div className="container mx-auto px-4">
         {/* Header */}
         <div
           ref={headerAnimation.ref}

@@ -42,10 +42,10 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#072AC8]/40 via-transparent to-transparent" />
       </div>
 
-      <div className="container mx-auto px-4 pt-24 pb-16 relative z-10 max-w-full overflow-hidden">
+      <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Copy */}
-          <div className="text-white max-w-full overflow-hidden">
+          <div className="text-white overflow-hidden">
             {/* Eyebrow */}
             <p className="text-[#FCF300] font-bold text-sm tracking-wider uppercase mb-4 animate-fade-in">
               LET OP, VAKANTIEHUISEIGENAREN
