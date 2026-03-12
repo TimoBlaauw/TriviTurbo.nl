@@ -51,7 +51,7 @@ export function SiteFooter() {
                 size="lg"
                 className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-sm sm:text-base md:text-lg px-4 sm:px-8 md:px-12 py-5 sm:py-6 md:py-7 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 w-full sm:w-auto max-w-full"
               >
-                <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE</span>
+                <span className="whitespace-normal sm:whitespace-nowrap">Bouw mijn gratis voorbeeldwebsite</span>
               </Button>
             </div>
           </div>
