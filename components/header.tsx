@@ -1,6 +1,7 @@
 "use client"
 
 import { usePopup } from "@/contexts/popup-context"
+import { useContactPopup } from "@/contexts/contact-popup-context"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
@@ -11,10 +12,12 @@ const navLinks = [
   { href: "#voorbeeld", label: "Voorbeelden" },
   { href: "#prijzen", label: "Prijzen" },
   { href: "#faq", label: "FAQ" },
+  { href: "contact", label: "Contact", isContact: true },
 ]
 
 export function Header() {
   const { openPopup } = usePopup()
+  const { openContactPopup } = useContactPopup()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -46,13 +49,23 @@ export function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-semibold text-[#072AC8]/80 hover:text-[#072AC8] hover:bg-[#072AC8]/5 px-4 py-2 rounded-full transition-all"
-                >
-                  {link.label}
-                </a>
+                link.isContact ? (
+                  <button
+                    key={link.href}
+                    onClick={openContactPopup}
+                    className="text-sm font-semibold text-[#072AC8]/80 hover:text-[#072AC8] hover:bg-[#072AC8]/5 px-4 py-2 rounded-full transition-all"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm font-semibold text-[#072AC8]/80 hover:text-[#072AC8] hover:bg-[#072AC8]/5 px-4 py-2 rounded-full transition-all"
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
             </nav>
 
@@ -82,14 +95,27 @@ export function Header() {
           <div className="lg:hidden mt-2 w-full bg-white rounded-2xl shadow-[0_8px_32px_rgba(7,42,200,0.15)] border border-[#072AC8]/5 overflow-hidden animate-in slide-in-from-top-2 duration-200">
             <nav className="p-4 flex flex-col gap-1">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-[#072AC8] font-semibold py-3 px-4 hover:bg-[#072AC8]/5 rounded-xl transition-colors"
-                >
-                  {link.label}
-                </a>
+                link.isContact ? (
+                  <button
+                    key={link.href}
+                    onClick={() => {
+                      setMobileOpen(false)
+                      openContactPopup()
+                    }}
+                    className="text-[#072AC8] font-semibold py-3 px-4 hover:bg-[#072AC8]/5 rounded-xl transition-colors text-left"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-[#072AC8] font-semibold py-3 px-4 hover:bg-[#072AC8]/5 rounded-xl transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
               <Button
                 onClick={() => {
