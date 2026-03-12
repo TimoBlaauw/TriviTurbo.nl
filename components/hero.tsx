@@ -73,7 +73,7 @@ export function Hero() {
               <div className="rounded-2xl shadow-2xl overflow-hidden">
                 <div className="relative" style={{ paddingTop: "56.25%" }}>
                   <iframe
-                    src="https://player.vimeo.com/video/1172086868?badge=0&autopause=0&player_id=0&app_id=58479"
+                    src="https://player.vimeo.com/video/1172968512?badge=0&;autopause=0&;player_id=0&;app_id=58479"
                     className="absolute inset-0 w-full h-full"
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
@@ -146,7 +146,7 @@ export function Hero() {
             <div className="rounded-2xl shadow-2xl overflow-hidden">
               <div className="relative" style={{ paddingTop: "56.25%" }}>
                 <iframe
-                  src="https://player.vimeo.com/video/1172086868?badge=0&autopause=0&player_id=0&app_id=58479"
+                  src="https://player.vimeo.com/video/1172968512?badge=0&;autopause=0&;player_id=0&;app_id=58479"
                   className="absolute inset-0 w-full h-full"
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
