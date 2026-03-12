@@ -283,7 +283,7 @@ export function Calculator() {
         kicker: "EERSTE STAP",
         title: "Er is nog veel winst te halen met een sterker direct boekingskanaal",
         text: "Jouw score laat zien dat er nu nog weinig groeifactoren actief zijn. Juist daarom kan een gratis voorbeeldwebsite helpen om te zien hoe je een betere basis opbouwt voor directe boekingen.",
-        button: "Bekijk een gratis voorbeeldwebsite",
+        button: "Claim gratis voorbeeldwebsite",
       }
     }
     if (score <= 14) {
