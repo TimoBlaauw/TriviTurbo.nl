@@ -99,7 +99,7 @@ export function Portfolio() {
                   />
                 </div>
                 {/* Badge */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                <div className="absolute -top-4 right-4 sm:-right-4 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
                   Live Website
                 </div>
               </div>
