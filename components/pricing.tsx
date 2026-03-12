@@ -131,7 +131,7 @@ export function Pricing() {
                   size="lg"
                   className="w-full sm:w-auto bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold text-base sm:text-lg px-12 py-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105"
                 >
-                  BOUW MIJN GRATIS VOORBEELDWEBSITE NU
+                  BOUW MIJN GRATIS VOORBEELDWEBSITE
                 </Button>
               </div>
             </div>

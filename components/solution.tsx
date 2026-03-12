@@ -4,17 +4,17 @@ import React from "react"
 import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import { 
-  Monitor, 
-  Rocket, 
-  CalendarCheck, 
-  Check, 
-  Smartphone, 
-  Users, 
-  Clock, 
-  RefreshCcw, 
-  Zap, 
-  PiggyBank 
+import {
+  Monitor,
+  Rocket,
+  CalendarCheck,
+  Check,
+  Smartphone,
+  Users,
+  Clock,
+  RefreshCcw,
+  Zap,
+  PiggyBank
 } from "lucide-react"
 
 const steps = [
@@ -285,7 +285,7 @@ export function Solution() {
             size="lg"
             className="bg-[#FCF300] text-[#072AC8] hover:bg-[#FCF300]/90 font-bold text-sm sm:text-base md:text-lg px-6 sm:px-10 py-5 sm:py-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto max-w-full"
           >
-            <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE NU</span>
+            <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE</span>
           </Button>
         </AnimatedSection>
       </div>
