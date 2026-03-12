@@ -45,7 +45,7 @@ export function Hero() {
       <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Copy */}
-          <div className="text-white overflow-hidden">
+          <div className="text-white overflow-hidden lg:overflow-visible">
             {/* Eyebrow */}
             <p className="text-[#FCF300] font-bold text-sm tracking-wider uppercase mb-4 animate-fade-in">
               LET OP, VAKANTIEHUISEIGENAREN
