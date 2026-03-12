@@ -83,7 +83,7 @@ export function Hero() {
                 </div>
               </div>
               {/* Badge */}
-              <div className="absolute -top-3 -right-3 bg-[#FCF300] text-[#072AC8] px-4 py-2 rounded-full font-bold text-sm shadow-lg flex items-center gap-2">
+              <div className="absolute -top-3 right-3 bg-[#FCF300] text-[#072AC8] px-4 py-2 rounded-full font-bold text-sm shadow-lg flex items-center gap-2">
                 <Play className="w-4 h-4" fill="currentColor" />
                 5 min uitleg
               </div>
@@ -96,7 +96,7 @@ export function Hero() {
                 size="lg"
                 className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-sm sm:text-base px-4 sm:px-8 py-5 sm:py-6 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group w-full sm:w-auto"
               >
-                <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE NU</span>
+                <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE</span>
               </Button>
             </div>
 

@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+
 import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
 
@@ -51,7 +51,7 @@ export function SiteFooter() {
                 size="lg"
                 className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-sm sm:text-base md:text-lg px-4 sm:px-8 md:px-12 py-5 sm:py-6 md:py-7 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 w-full sm:w-auto max-w-full"
               >
-                <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE NU</span>
+                <span className="whitespace-normal sm:whitespace-nowrap">Bouw mijn gratis voorbeeldwebsite</span>
               </Button>
             </div>
           </div>
@@ -63,11 +63,9 @@ export function SiteFooter() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <Image
+              <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Trivi-Turbo-Logo-9FgJYGnIpjwFGebhk7V6xDrblbKtYC.png"
                 alt="TriviTurbo Logo"
-                width={140}
-                height={40}
                 className="h-8 w-auto brightness-0 invert"
               />
             </div>

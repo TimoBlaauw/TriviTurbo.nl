@@ -63,7 +63,7 @@ export function Portfolio() {
             transform: portfolioAnimation.isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.98)'
           }}
         >
-          <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-3xl p-8 md:p-12 border border-[#072AC8]/10 shadow-xl">
+          <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-3xl p-8 md:p-12 border border-[#072AC8]/10 shadow-xl overflow-x-clip">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
               {/* Device Mockup */}
               <div className="relative">
@@ -99,7 +99,7 @@ export function Portfolio() {
                   />
                 </div>
                 {/* Badge */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                <div className="absolute -top-4 right-4 sm:-right-4 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
                   Live Website
                 </div>
               </div>
@@ -208,7 +208,7 @@ export function Portfolio() {
               size="lg"
               className="bg-[#FCF300] text-[#072AC8] hover:bg-[#FCF300]/90 font-bold text-sm sm:text-base md:text-lg px-6 sm:px-10 py-5 sm:py-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto max-w-full"
             >
-              <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE NU</span>
+              <span className="whitespace-normal sm:whitespace-nowrap">Bouw mijn gratis voorbeeldwebsite</span>
             </Button>
           </div>
         </div>
