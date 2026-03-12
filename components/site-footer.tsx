@@ -1,11 +1,12 @@
 "use client"
 
-
 import { usePopup } from "@/contexts/popup-context"
+import { useContactPopup } from "@/contexts/contact-popup-context"
 import { Button } from "@/components/ui/button"
 
 export function SiteFooter() {
   const { openPopup } = usePopup()
+  const { openContactPopup } = useContactPopup()
 
   return (
     <>
@@ -71,15 +72,27 @@ export function SiteFooter() {
             </div>
 
             <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <a href="#hoe-het-werkt" className="text-white/70 hover:text-white transition-colors">
+                Hoe het werkt
+              </a>
               <a href="#calculator" className="text-white/70 hover:text-white transition-colors">
-                Calculator
+                Bespaarcheck
               </a>
               <a href="#voorbeeld" className="text-white/70 hover:text-white transition-colors">
                 Voorbeelden
               </a>
+              <a href="#prijzen" className="text-white/70 hover:text-white transition-colors">
+                Prijzen
+              </a>
               <a href="#faq" className="text-white/70 hover:text-white transition-colors">
                 FAQ
               </a>
+              <button 
+                onClick={openContactPopup}
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Contact
+              </button>
             </nav>
 
             <p className="text-white/50 text-sm">
