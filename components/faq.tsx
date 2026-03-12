@@ -6,7 +6,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { useContactPopup } from "@/contexts/contact-popup-context"
+import { MessageCircle } from "lucide-react"
 
 const faqs = [
   {
@@ -47,8 +50,10 @@ const faqs = [
 ]
 
 export function FAQ() {
+  const { openContactPopup } = useContactPopup()
   const headerAnimation = useScrollAnimation<HTMLDivElement>()
   const accordionAnimation = useScrollAnimation<HTMLDivElement>()
+  const calloutAnimation = useScrollAnimation<HTMLDivElement>()
 
   return (
     <section id="faq" className="py-20 md:py-28 bg-white scroll-mt-20">
@@ -101,6 +106,39 @@ export function FAQ() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+
+          {/* Contact Callout Card */}
+          <div
+            ref={calloutAnimation.ref}
+            className="mt-12 transition-all duration-700 ease-out"
+            style={{
+              opacity: calloutAnimation.isVisible ? 1 : 0,
+              transform: calloutAnimation.isVisible ? 'translateY(0)' : 'translateY(30px)'
+            }}
+          >
+            <div className="bg-gradient-to-br from-[#FCF300]/10 to-[#FCF300]/5 rounded-2xl border border-[#FCF300]/30 p-6 md:p-8">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="w-14 h-14 bg-[#FCF300] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-7 h-7 text-[#072AC8]" />
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-xl font-bold text-[#072AC8] mb-2">
+                    Twijfel je nog of heb je een vraag?
+                  </h3>
+                  <p className="text-[#4b5b8a]">
+                    {"Stel 'm even kort — dan kijken we of dit past bij jouw situatie."}
+                  </p>
+                </div>
+                <Button
+                  id="ttv-contact-cta-faq"
+                  onClick={openContactPopup}
+                  className="w-full md:w-auto bg-[#072AC8] hover:bg-[#0095FF] text-white font-bold px-8 py-4 rounded-xl transition-all"
+                >
+                  Stel je vraag
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
