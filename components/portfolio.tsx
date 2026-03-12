@@ -63,7 +63,7 @@ export function Portfolio() {
             transform: portfolioAnimation.isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.98)'
           }}
         >
-          <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-3xl p-8 md:p-12 border border-[#072AC8]/10 shadow-xl">
+          <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-3xl p-8 md:p-12 border border-[#072AC8]/10 shadow-xl overflow-x-clip">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
               {/* Device Mockup */}
               <div className="relative">
