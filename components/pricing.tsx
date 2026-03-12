@@ -1,6 +1,7 @@
 "use client"
 
 import { usePopup } from "@/contexts/popup-context"
+import { useContactPopup } from "@/contexts/contact-popup-context"
 import { Button } from "@/components/ui/button"
 import { Check, Shield, Zap } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
@@ -26,6 +27,7 @@ const included = [
 
 export function Pricing() {
   const { openPopup } = usePopup()
+  const { openContactPopup } = useContactPopup()
   const headerAnimation = useScrollAnimation<HTMLDivElement>()
   const cardAnimation = useScrollAnimation<HTMLDivElement>()
 
@@ -126,13 +128,24 @@ export function Pricing() {
                 <p className="text-[#4b5b8a] mb-4">
                   Bekijk eerst gratis jouw persoonlijke voorbeeldwebsite. Je betaalt pas als je overtuigd bent.
                 </p>
-                <Button
-                  onClick={openPopup}
-                  size="lg"
-                  className="w-full sm:w-auto bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold text-base sm:text-lg px-12 py-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105"
-                >
-                  Bouw mijn gratis voorbeeldwebsite
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button
+                    onClick={openPopup}
+                    size="lg"
+                    className="w-full sm:w-auto bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold text-base sm:text-lg px-10 py-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+                  >
+                    Bouw mijn gratis voorbeeldwebsite
+                  </Button>
+                  <Button
+                    id="ttv-contact-cta-pricing"
+                    onClick={openContactPopup}
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto border-2 border-[#072AC8]/20 text-[#072AC8] hover:bg-[#072AC8]/5 font-semibold text-base sm:text-lg px-8 py-6 rounded-2xl transition-all"
+                  >
+                    Eerst nog een vraag?
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
