@@ -132,7 +132,7 @@ export function Pricing() {
                   <Button
                     onClick={openPopup}
                     size="lg"
-                    className="w-full sm:w-auto bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold text-base sm:text-lg leading-none px-10 py-4 min-h-[48px] rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+                    className="w-full sm:w-auto bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold text-base sm:text-lg leading-none px-10 py-3 min-h-[44px] rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105"
                   >
                     Bouw mijn gratis voorbeeldwebsite
                   </Button>
@@ -142,7 +142,7 @@ export function Pricing() {
                     onClick={openContactPopup}
                     size="lg"
                     variant="outline"
-                    className="w-full sm:w-auto border-2 border-[#072AC8]/20 text-[#072AC8] hover:bg-[#072AC8]/5 font-bold text-base sm:text-lg leading-none px-10 py-4 min-h-[48px] rounded-2xl transition-all"
+                    className="w-full sm:w-auto border-2 border-[#072AC8]/20 text-[#072AC8] hover:bg-[#072AC8]/5 font-bold text-base sm:text-lg leading-none px-10 py-3 min-h-[44px] rounded-2xl transition-all"
                   >
                     Eerst nog een vraag?
                   </Button>
