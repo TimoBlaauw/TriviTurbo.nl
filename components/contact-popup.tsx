@@ -83,7 +83,6 @@ export function ContactPopup() {
     setIsSubmitting(true)
 
     try {
-      // 1. De data voorbereiden (gebruiken we voor beide systemen)
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
         subject: Nieuwe vraag van ${ formData.name },
@@ -97,15 +96,12 @@ export function ContactPopup() {
                 botcheck,
       }
 
-      // 2. Tegelijkertijd naar BEIDE systemen sturen
       const [web3Response, ghlResponse] = await Promise.all([
-                  // Stuur naar Web3Forms
                   fetch("https://api.web3forms.com/submit", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload),
                   }),
-                  // Stuur naar GoHighLevel
                   fetch("https://services.leadconnectorhq.com/hooks/5jh9KpAoe1eQ80Bfj9mP/webhook-trigger/drJeUe6mFz4tbn7tnOpv", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -119,7 +115,6 @@ export function ContactPopup() {
                   })
                 ])
 
-    // 3. Check of het gelukt is (we kijken hier vooral of Web3Forms blij is voor de succes-melding)
     const web3Result = await web3Response.json()
 
     if (web3Result?.success || ghlResponse.ok) {
@@ -127,10 +122,9 @@ export function ContactPopup() {
     } else {
       setSubmitError("Verzenden mislukt. Probeer het opnieuw.")
     }
-
   } catch (err) {
-    console.error("Fout bij verzenden:", err)
-    setSubmitError("Er is een verbindingsfout. Probeer het later nog eens.")
+    console.error("Fout:", err)
+    setSubmitError("Er is een verbindingsfout.")
   } finally {
     setIsSubmitting(false)
   }
