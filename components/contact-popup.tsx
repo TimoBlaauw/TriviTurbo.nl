@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react"
 import { useContactPopup } from "@/contexts/contact-popup-context"
 import { Button } from "@/components/ui/button"
-import { X, Loader2, MessageCircle, Phone } from "lucide-react"
+import { X, Loader2, MessageCircle } from "lucide-react"
 
 const WEB3FORMS_ACCESS_KEY = "275c0cb4-71c7-4211-851d-855bbc323a0b"
+const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/5jh9KpAoe1eQ80Bfj9mP/webhook-trigger/drJeUe6mFz4tbn7tnOpv"
 
 interface ContactFormData {
   name: string
@@ -30,7 +31,6 @@ export function ContactPopup() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [botcheck, setBotcheck] = useState("")
 
-  // Lock background scroll while popup is open
   useEffect(() => {
     if (!isContactOpen) return
     const prevOverflow = document.body.style.overflow
@@ -40,7 +40,6 @@ export function ContactPopup() {
     }
   }, [isContactOpen])
 
-  // Handle ESC key
   useEffect(() => {
     if (!isContactOpen) return
     const handleEsc = (e: KeyboardEvent) => {
@@ -57,7 +56,6 @@ export function ContactPopup() {
 
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof ContactFormData, string>> = {}
-
     if (!formData.name.trim()) newErrors.name = "Naam is verplicht"
     if (!formData.email.trim()) {
       newErrors.email = "E-mail is verplicht"
@@ -65,16 +63,26 @@ export function ContactPopup() {
       newErrors.email = "Voer een geldig e-mailadres in"
     }
     if (!formData.message.trim()) newErrors.message = "Je vraag is verplicht"
-
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
+  }
+
+  const handleClose = () => {
+    closeContactPopup()
+    setTimeout(() => {
+      setFormData(initialFormData)
+      setErrors({})
+      setIsSubmitting(false)
+      setSubmitError("")
+      setIsSuccess(false)
+      setBotcheck("")
+    }, 300)
   }
 
   const handleSubmit = async () => {
     setSubmitError("")
     if (!validate()) return
 
-    // Honeypot check
     if (botcheck.trim().length > 0) {
       setSubmitError("Er ging iets mis. Probeer het later opnieuw.")
       return
@@ -102,7 +110,7 @@ export function ContactPopup() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload),
                   }),
-                  fetch("https://services.leadconnectorhq.com/hooks/5jh9KpAoe1eQ80Bfj9mP/webhook-trigger/drJeUe6mFz4tbn7tnOpv", {
+                  fetch(GHL_WEBHOOK_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -110,9 +118,9 @@ export function ContactPopup() {
                       email: formData.email,
                       phone: formData.phone,
                       message: formData.message,
-                      source: "Website Popup"
+                      source: "Website Popup",
                     }),
-                  })
+                  }),
                 ])
 
     const web3Result = await web3Response.json()
@@ -130,31 +138,12 @@ export function ContactPopup() {
   }
 }
 
-const handleClose = () => {
-  closeContactPopup()
-  setTimeout(() => {
-    setFormData(initialFormData)
-    setErrors({})
-    setIsSubmitting(false)
-    setSubmitError("")
-    setIsSuccess(false)
-    setBotcheck("")
-  }, 300)
-}
-
 if (!isContactOpen) return null
 
 return (
   <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-    {/* Backdrop */}
-    <div
-      className="absolute inset-0 bg-[#072AC8]/80 backdrop-blur-sm"
-      onClick={handleClose}
-    />
-
-    {/* Modal */}
+    <div className="absolute inset-0 bg-[#072AC8]/80 backdrop-blur-sm" onClick={handleClose} />
     <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
-      {/* Close Button */}
       <button
         onClick={handleClose}
         className="absolute top-4 right-4 z-10 w-10 h-10 bg-[#072AC8]/10 hover:bg-[#072AC8]/20 rounded-full flex items-center justify-center transition-colors"
@@ -162,21 +151,14 @@ return (
         <X className="w-5 h-5 text-[#072AC8]" />
       </button>
 
-      {/* Header */}
       <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
         <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
           {isSuccess ? "Bericht ontvangen" : "Stel je vraag"}
         </h2>
-        {!isSuccess && (
-          <p className="text-white/80 mt-2">
-            We reageren meestal binnen 1 werkdag.
-          </p>
-        )}
+        {!isSuccess && <p className="text-white/80 mt-2">We reageren meestal binnen 1 werkdag.</p>}
       </div>
 
-      {/* Content */}
       <div className="p-6 md:p-8 overflow-y-auto overscroll-contain max-h-[calc(90vh-160px)]">
-        {/* Honeypot */}
         <input
           type="text"
           value={botcheck}
@@ -200,11 +182,9 @@ return (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-[#072AC8] mb-3">
-              Top — we hebben je bericht.
-            </h3>
+            <h3 className="text-xl font-bold text-[#072AC8] mb-3">Top — we hebben je bericht.</h3>
             <p className="text-[#4b5b8a] mb-6 leading-relaxed">
-              We reageren meestal binnen 1 werkdag. Als het sneller moet: WhatsApp ons even op{" "}
+              We reageren meestal binnen 1 werkdag. Als het sneller moet: WhatsApp ons op{" "}
               <a
                 href="https://wa.me/31644792472"
                 target="_blank"
@@ -281,7 +261,6 @@ return (
               {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
             </div>
 
-            {/* WhatsApp/Call Option */}
             <div className="bg-[#f0f6ff] rounded-2xl p-4 flex items-center gap-4">
               <div className="w-10 h-10 bg-[#25D366]/20 rounded-full flex items-center justify-center flex-shrink-0">
                 <MessageCircle className="w-5 h-5 text-[#25D366]" />
