@@ -327,7 +327,7 @@ export function LeadFormPopup() {
                 <Check className="w-10 h-10 text-green-600" />
               </div>
               <h3 className="text-2xl font-bold text-[#072AC8] mb-4">Bedankt voor je aanvraag!</h3>
-              <p className="text-[#4b5b8a] mb-8">Ik ga direct aan de slag. Je hoort uiterlijk morgen van me.</p>
+              <p className="text-[#4b5b8a] mb-8">We gaan direct aan de slag. Je hoort uiterlijk morgen van ons.</p>
               <Button onClick={handleClose} className="bg-[#072AC8] text-white px-8 py-3 rounded-xl">Sluiten</Button>
             </div>
           )}
