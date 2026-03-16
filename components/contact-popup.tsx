@@ -84,7 +84,7 @@ export function ContactPopup() {
     if (!validate()) return
 
     if (botcheck.trim().length > 0) {
-      setSubmitError("Er ging iets mis. Probeer het later opnieuw.")
+      setSubmitError("Er ging iets mis.")
       return
     }
 
@@ -93,211 +93,142 @@ export function ContactPopup() {
     try {
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: Nieuwe vraag van ${ formData.name },
+        subject: "Nieuwe website aanvraag TriviTurbo",
         from_name: "TriviTurbo Contact",
         name: formData.name,
         email: formData.email,
         phone: formData.phone || "-",
-          message: formData.message,
-            pageUrl: typeof window !== "undefined" ? window.location.href : "",
-              timestamp: new Date().toISOString(),
-                botcheck,
+        message: formData.message,
       }
 
       const [web3Response, ghlResponse] = await Promise.all([
-                  fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                  }),
-                  fetch(GHL_WEBHOOK_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      name: formData.name,
-                      email: formData.email,
-                      phone: formData.phone,
-                      message: formData.message,
-                      source: "Website Popup",
-                    }),
-                  }),
-                ])
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }),
+        fetch(GHL_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+          }),
+        }),
+      ])
 
-    const web3Result = await web3Response.json()
-
-    if (web3Result?.success || ghlResponse.ok) {
-      setIsSuccess(true)
-    } else {
-      setSubmitError("Verzenden mislukt. Probeer het opnieuw.")
+      if (web3Response.ok || ghlResponse.ok) {
+        setIsSuccess(true)
+      } else {
+        setSubmitError("Verzenden mislukt. Probeer het opnieuw.")
+      }
+    } catch (err) {
+      setSubmitError("Verbindingsfout.")
+    } finally {
+      setIsSubmitting(false)
     }
-  } catch (err) {
-    console.error("Fout:", err)
-    setSubmitError("Er is een verbindingsfout.")
-  } finally {
-    setIsSubmitting(false)
   }
-}
 
-if (!isContactOpen) return null
+  if (!isContactOpen) return null
 
-return (
-  <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-    <div className="absolute inset-0 bg-[#072AC8]/80 backdrop-blur-sm" onClick={handleClose} />
-    <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
-      <button
-        onClick={handleClose}
-        className="absolute top-4 right-4 z-10 w-10 h-10 bg-[#072AC8]/10 hover:bg-[#072AC8]/20 rounded-full flex items-center justify-center transition-colors"
-      >
-        <X className="w-5 h-5 text-[#072AC8]" />
-      </button>
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-[#072AC8]/80 backdrop-blur-sm" onClick={handleClose} />
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden">
+        <button
+          onClick={handleClose}
+          className="absolute top-4 right-4 z-10 w-10 h-10 bg-[#072AC8]/10 hover:bg-[#072AC8]/20 rounded-full flex items-center justify-center transition-colors"
+        >
+          <X className="w-5 h-5 text-[#072AC8]" />
+        </button>
 
-      <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
-        <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
-          {isSuccess ? "Bericht ontvangen" : "Stel je vraag"}
-        </h2>
-        {!isSuccess && <p className="text-white/80 mt-2">We reageren meestal binnen 1 werkdag.</p>}
-      </div>
+        <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
+          <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
+            {isSuccess ? "Bericht ontvangen" : "Stel je vraag"}
+          </h2>
+          {!isSuccess && <p className="text-white/80 mt-2">We reageren meestal binnen 1 werkdag.</p>}
+        </div>
 
-      <div className="p-6 md:p-8 overflow-y-auto overscroll-contain max-h-[calc(90vh-160px)]">
-        <input
-          type="text"
-          value={botcheck}
-          onChange={(e) => setBotcheck(e.target.value)}
-          className="hidden"
-          tabIndex={-1}
-          autoComplete="off"
-          aria-hidden="true"
-        />
+        <div className="p-6 md:p-8 overflow-y-auto max-h-[calc(90vh-160px)]">
+          <input type="text" value={botcheck} onChange={(e) => setBotcheck(e.target.value)} className="hidden" />
 
-        {submitError && (
-          <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-            {submitError}
-          </div>
-        )}
-
-        {isSuccess ? (
-          <div className="text-center py-8">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
+          {submitError && (
+            <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              {submitError}
             </div>
-            <h3 className="text-xl font-bold text-[#072AC8] mb-3">Top — we hebben je bericht.</h3>
-            <p className="text-[#4b5b8a] mb-6 leading-relaxed">
-              We reageren meestal binnen 1 werkdag. Als het sneller moet: WhatsApp ons op{" "}
-              <a
-                href="https://wa.me/31644792472"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0095FF] font-semibold hover:underline"
-              >
-                +31 6 44792472
-              </a>
-            </p>
-            <Button
-              onClick={handleClose}
-              className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-8 py-4 rounded-2xl"
-            >
-              Sluiten
-            </Button>
-          </div>
-        ) : (
-          <div className="space-y-5">
-            <div>
-              <label className="block text-sm font-bold text-[#072AC8] mb-2">
-                Naam <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => updateField("name", e.target.value)}
-                placeholder="Bijv. Jan"
-                className={`w-full px-4 py-3 rounded-xl border ${errors.name ? "border-red-400" : "border-[#072AC8]/12"
-                  } bg-white text-[#072AC8] placeholder:text-[#8ba0d7] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 focus:border-[#0095FF] transition-all`}
-              />
-              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-            </div>
+          )}
 
-            <div>
-              <label className="block text-sm font-bold text-[#072AC8] mb-2">
-                E-mail <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => updateField("email", e.target.value)}
-                placeholder="jan@voorbeeld.nl"
-                className={`w-full px-4 py-3 rounded-xl border ${errors.email ? "border-red-400" : "border-[#072AC8]/12"
-                  } bg-white text-[#072AC8] placeholder:text-[#8ba0d7] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 focus:border-[#0095FF] transition-all`}
-              />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-[#072AC8] mb-2">
-                Telefoon/WhatsApp <span className="text-[#4b5b8a] font-normal">(optioneel)</span>
-              </label>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => updateField("phone", e.target.value)}
-                placeholder="+31 6 12345678"
-                className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] placeholder:text-[#8ba0d7] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 focus:border-[#0095FF] transition-all"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-[#072AC8] mb-2">
-                Je vraag <span className="text-red-500">*</span>
-              </label>
-              <textarea
-                value={formData.message}
-                onChange={(e) => updateField("message", e.target.value)}
-                placeholder="Waar kunnen we je mee helpen?"
-                rows={4}
-                className={`w-full px-4 py-3 rounded-xl border ${errors.message ? "border-red-400" : "border-[#072AC8]/12"
-                  } bg-white text-[#072AC8] placeholder:text-[#8ba0d7] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 focus:border-[#0095FF] transition-all resize-none`}
-              />
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-            </div>
-
-            <div className="bg-[#f0f6ff] rounded-2xl p-4 flex items-center gap-4">
-              <div className="w-10 h-10 bg-[#25D366]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
+          {isSuccess ? (
+            <div className="text-center py-8">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
               </div>
-              <div className="flex-1">
-                <p className="text-sm text-[#4b5b8a]">Liever even bellen of WhatsAppen?</p>
-                <a
-                  href="https://wa.me/31644792472"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#072AC8] font-bold hover:text-[#0095FF] transition-colors"
-                >
-                  +31 6 44792472
-                </a>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <Button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Verzenden...
-                  </>
-                ) : (
-                  "Verstuur je vraag"
-                )}
+              <h3 className="text-xl font-bold text-[#072AC8] mb-3">Top — we hebben je bericht.</h3>
+              <p className="text-[#4b5b8a] mb-6 leading-relaxed">We reageren meestal binnen 1 werkdag.</p>
+              <Button onClick={handleClose} className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-8 py-4 rounded-2xl">
+                Sluiten
               </Button>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="space-y-5">
+              <div>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">Naam *</label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => updateField("name", e.target.value)}
+                  placeholder="Bijv. Jan"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
+                />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">E-mail *</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => updateField("email", e.target.value)}
+                  placeholder="jan@voorbeeld.nl"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
+                />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">Telefoon/WhatsApp</label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => updateField("phone", e.target.value)}
+                  placeholder="+31 6 12345678"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">Je vraag *</label>
+                <textarea
+                  value={formData.message}
+                  onChange={(e) => updateField("message", e.target.value)}
+                  placeholder="Waar kunnen we je mee helpen?"
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all resize-none"
+                />
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+              </div>
+
+              <Button onClick={handleSubmit} disabled={isSubmitting} className="w-full bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold py-4 rounded-2xl shadow-lg transition-all disabled:opacity-70">
+                {isSubmitting ? <Loader2 className="w-5 h-5 mr-2 animate-spin" /> : "Verstuur je vraag"}
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
 }
