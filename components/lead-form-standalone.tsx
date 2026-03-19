@@ -89,31 +89,53 @@ export function LeadFormStandalone() {
 
   const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setFormData((prev) => ({ ...prev, [key]: value }))
-    if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }))
+    if (errors[key]) {
+      setErrors((prev) => ({ ...prev, [key]: undefined }))
+    }
   }
 
   const validateStepA = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {}
+
     if (!formData.firstName.trim()) newErrors.firstName = "Voornaam is verplicht"
+
     if (!formData.email.trim()) {
       newErrors.email = "E-mail is verplicht"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Voer een geldig e-mailadres in"
     }
+
     if (!formData.phone.trim()) newErrors.phone = "Telefoonnummer is verplicht"
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
   const validateStepB = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {}
-    if (!formData.accommodationName.trim()) newErrors.accommodationName = "Naam accommodatie is verplicht"
-    if (!formData.locationCity.trim()) newErrors.locationCity = "Locatie is verplicht"
-    if (!formData.locationCountry.trim()) newErrors.locationCountry = "Land is verplicht"
-    if (!formData.platformLink.trim()) newErrors.platformLink = "Platform link is verplicht"
-    if (!formData.keyFeatures.trim()) newErrors.keyFeatures = "Kernpunten zijn verplicht"
-    if (!formData.colorPreference.trim()) newErrors.colorPreference = "Kleurvoorkeur is verplicht"
-    if (!formData.consent) newErrors.consent = "Je moet akkoord gaan met de voorwaarden"
+
+    if (!formData.accommodationName.trim()) {
+      newErrors.accommodationName = "Naam accommodatie is verplicht"
+    }
+    if (!formData.locationCity.trim()) {
+      newErrors.locationCity = "Plaats/regio is verplicht"
+    }
+    if (!formData.locationCountry.trim()) {
+      newErrors.locationCountry = "Land is verplicht"
+    }
+    if (!formData.platformLink.trim()) {
+      newErrors.platformLink = "Platform link is verplicht"
+    }
+    if (!formData.keyFeatures.trim()) {
+      newErrors.keyFeatures = "Kernpunten zijn verplicht"
+    }
+    if (!formData.colorPreference.trim()) {
+      newErrors.colorPreference = "Kleurvoorkeur is verplicht"
+    }
+    if (!formData.consent) {
+      newErrors.consent = "Je moet akkoord gaan met de voorwaarden"
+    }
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -129,10 +151,12 @@ export function LeadFormStandalone() {
   const handleSubmit = async () => {
     setSubmitError("")
     if (!validateStepB()) return
+
     setIsSubmitting(true)
 
     try {
       const ghlParams = new URLSearchParams()
+
       Object.entries({
         ...formData,
         source: "voorbeeldwebsite",
@@ -172,10 +196,17 @@ export function LeadFormStandalone() {
     }
   }
 
+  const isCompactStep = step === "A"
+
   return (
-    <div className="min-h-screen bg-[#1a3fd3] px-4 py-8 md:px-6 md:py-12 flex items-center justify-center">
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden border border-[#072AC8]/10">
-        <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
+    <div className="h-[100dvh] bg-[#1a3fd3] p-4 md:p-6 flex items-start md:items-center justify-center overflow-hidden">
+      <div
+        className={`relative w-full max-w-2xl rounded-3xl bg-white shadow-2xl border border-white/30 overflow-hidden flex flex-col ${isCompactStep
+          ? ""
+          : "h-[calc(100dvh-2rem)] md:h-[calc(100dvh-3rem)] max-h-[820px]"
+          }`}
+      >
+        <div className="shrink-0 bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
             {step === "success" ? "Aanvraag ontvangen" : "Gratis voorbeeldwebsite aanvragen"}
           </h2>
@@ -207,7 +238,10 @@ export function LeadFormStandalone() {
           )}
         </div>
 
-        <div className="p-6 md:p-8 overflow-y-auto overscroll-contain max-h-[calc(100vh-140px)]">
+        <div
+          className={`p-6 md:p-8 ${isCompactStep ? "" : "flex-1 min-h-0 overflow-y-auto overscroll-contain"
+            }`}
+        >
           {submitError && (
             <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
               {submitError}
@@ -288,7 +322,9 @@ export function LeadFormStandalone() {
                     type="text"
                     value={formData.accommodationName}
                     onChange={(e) => updateField("accommodationName", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                    placeholder="Bijv. Villa Zeezicht"
+                    className={`w-full px-4 py-3 rounded-xl border ${errors.accommodationName ? "border-red-400" : "border-[#072AC8]/12"
+                      } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                   />
                   {errors.accommodationName && (
                     <p className="text-red-500 text-sm mt-1">{errors.accommodationName}</p>
@@ -301,7 +337,9 @@ export function LeadFormStandalone() {
                     type="text"
                     value={formData.locationCountry}
                     onChange={(e) => updateField("locationCountry", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                    placeholder="Bijv. Nederland"
+                    className={`w-full px-4 py-3 rounded-xl border ${errors.locationCountry ? "border-red-400" : "border-[#072AC8]/12"
+                      } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                   />
                   {errors.locationCountry && (
                     <p className="text-red-500 text-sm mt-1">{errors.locationCountry}</p>
@@ -315,28 +353,39 @@ export function LeadFormStandalone() {
                   type="text"
                   value={formData.locationCity}
                   onChange={(e) => updateField("locationCity", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  placeholder="Bijv. Burgh-Haamstede"
+                  className={`w-full px-4 py-3 rounded-xl border ${errors.locationCity ? "border-red-400" : "border-[#072AC8]/12"
+                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                 />
+                {errors.locationCity && <p className="text-red-500 text-sm mt-1">{errors.locationCity}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">Platform link (Airbnb/Booking) *</label>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">
+                  Platform link (Airbnb/Booking) *
+                </label>
                 <input
                   type="url"
                   value={formData.platformLink}
                   onChange={(e) => updateField("platformLink", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  placeholder="Bijv. https://www.airbnb.com/rooms/12345678"
+                  className={`w-full px-4 py-3 rounded-xl border ${errors.platformLink ? "border-red-400" : "border-[#072AC8]/12"
+                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                 />
+                {errors.platformLink && <p className="text-red-500 text-sm mt-1">{errors.platformLink}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">5 kernpunten *</label>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">Noem minimaal 5 kenmerken die jouw accommodatie uniek maken. *</label>
                 <textarea
                   value={formData.keyFeatures}
                   onChange={(e) => updateField("keyFeatures", e.target.value)}
+                  placeholder="Bijv. zwembad, zeezicht, 6 personen, privé terras, gratis parkeren"
                   rows={2}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white resize-none"
+                  className={`w-full px-4 py-3 rounded-xl border ${errors.keyFeatures ? "border-red-400" : "border-[#072AC8]/12"
+                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all resize-none`}
                 />
+                {errors.keyFeatures && <p className="text-red-500 text-sm mt-1">{errors.keyFeatures}</p>}
               </div>
 
               <div>
@@ -345,38 +394,46 @@ export function LeadFormStandalone() {
                   type="text"
                   value={formData.colorPreference}
                   onChange={(e) => updateField("colorPreference", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  placeholder="Bijv. donkerblauw, wit en goud"
+                  className={`w-full px-4 py-3 rounded-xl border ${errors.colorPreference ? "border-red-400" : "border-[#072AC8]/12"
+                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                 />
+                {errors.colorPreference && (
+                  <p className="text-red-500 text-sm mt-1">{errors.colorPreference}</p>
+                )}
               </div>
 
               <div className="border-t pt-5 mt-6 space-y-4">
                 <p className="text-sm font-bold text-[#4b5b8a]">Optionele informatie</p>
+
                 <input
                   type="url"
                   placeholder="Huidige website URL"
                   value={formData.currentWebsite}
                   onChange={(e) => updateField("currentWebsite", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
                 />
+
                 <input
                   type="url"
                   placeholder="Google Business Profile URL"
                   value={formData.googleBusinessProfile}
                   onChange={(e) => updateField("googleBusinessProfile", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
                 />
+
                 <input
                   type="url"
                   placeholder="Foto's link (Dropbox/Drive)"
                   value={formData.photosLink}
                   onChange={(e) => updateField("photosLink", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
                 />
 
                 <select
                   value={formData.managesOwnBooking}
                   onChange={(e) => updateField("managesOwnBooking", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none transition-all"
                 >
                   <option value="">Beheer je zelf boekingen?</option>
                   <option value="yes">Ja</option>
@@ -393,7 +450,8 @@ export function LeadFormStandalone() {
                     className="mt-1 w-5 h-5 rounded text-[#0095FF]"
                   />
                   <span className="text-sm text-[#4b5b8a]">
-                    Akkoord: TriviTurbo mag mijn gegevens gebruiken voor het maken van een voorbeeldwebsite. *
+                    Akkoord: TriviTurbo mag mijn gegevens gebruiken voor het maken van een
+                    voorbeeldwebsite. *
                   </span>
                 </label>
                 {errors.consent && <p className="text-red-500 text-sm mt-2">{errors.consent}</p>}
@@ -420,12 +478,14 @@ export function LeadFormStandalone() {
           )}
 
           {step === "success" && (
-            <div className="text-center py-12">
+            <div className="h-full flex flex-col items-center justify-center text-center py-12">
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="w-10 h-10 text-green-600" />
               </div>
               <h3 className="text-2xl font-bold text-[#072AC8] mb-4">Bedankt voor je aanvraag!</h3>
-              <p className="text-[#4b5b8a] mb-8">We gaan direct aan de slag. Je hoort uiterlijk morgen van ons.</p>
+              <p className="text-[#4b5b8a] mb-8">
+                We gaan direct aan de slag. Je hoort uiterlijk morgen van ons.
+              </p>
               <Button onClick={resetForm} className="bg-[#072AC8] text-white px-8 py-3 rounded-xl">
                 Nieuwe aanvraag versturen
               </Button>
