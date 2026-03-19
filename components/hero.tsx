@@ -8,6 +8,7 @@ export function Hero() {
   const { openPopup } = usePopup()
 
   return (
+    <>
     <section className="relative min-h-screen flex items-center overflow-x-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#072AC8] via-[#0095FF] to-[#01BCFF]">
@@ -106,25 +107,12 @@ export function Hero() {
               <span className="text-sm font-medium">Je ontvangt je voorbeeldwebsite binnen 48 uur</span>
             </div>
 
-            {/* Trust Row with Stars and Avatars — always visible, inline in flow */}
-            <div className="mt-5 flex flex-wrap items-center gap-3">
-              {/* Avatar Group */}
-              <div className="flex -space-x-2">
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Linda-7sYNQclmTkltuly8ZW57icmYTzgV40.jpg"
-                  alt="Linda"
-                  className="w-10 h-10 rounded-full border-2 border-white object-cover"
-                />
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Thomas-cgqrj4PdCzhjCMt3b7HGsjPxtOaBXS.jpg"
-                  alt="Thomas"
-                  className="w-10 h-10 rounded-full border-2 border-white object-cover"
-                />
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sofia-5HzNdzQWMUaJfQWnnRc7h6qbNOMWI7.jpg"
-                  alt="Sofia"
-                  className="w-10 h-10 rounded-full border-2 border-white object-cover"
-                />
+            {/* Trust Row — desktop only, inside hero */}
+            <div className="mt-5 hidden lg:flex items-center gap-3">
+              <div className="flex -space-x-2 flex-shrink-0">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Linda-7sYNQclmTkltuly8ZW57icmYTzgV40.jpg" alt="Linda" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Thomas-cgqrj4PdCzhjCMt3b7HGsjPxtOaBXS.jpg" alt="Thomas" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sofia-5HzNdzQWMUaJfQWnnRc7h6qbNOMWI7.jpg" alt="Sofia" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
               </div>
               <div className="flex flex-col">
                 <div className="flex gap-0.5 mb-1">
@@ -163,5 +151,28 @@ export function Hero() {
       </div>
 
     </section>
+
+    {/* Trust row — mobile only, placed after hero so it is always below the fold.
+        The hero is min-h-screen, so this element is never visible on first load. */}
+    <div className="lg:hidden bg-[#0095FF] py-4 px-6">
+      <div className="flex items-center justify-center gap-3">
+        <div className="flex -space-x-2 flex-shrink-0">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Linda-7sYNQclmTkltuly8ZW57icmYTzgV40.jpg" alt="Linda" className="w-9 h-9 rounded-full border-2 border-white object-cover" />
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Thomas-cgqrj4PdCzhjCMt3b7HGsjPxtOaBXS.jpg" alt="Thomas" className="w-9 h-9 rounded-full border-2 border-white object-cover" />
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sofia-5HzNdzQWMUaJfQWnnRc7h6qbNOMWI7.jpg" alt="Sofia" className="w-9 h-9 rounded-full border-2 border-white object-cover" />
+        </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex gap-0.5">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-3.5 h-3.5 fill-[#FCF300] text-[#FCF300]" />
+            ))}
+          </div>
+          <p className="text-white text-xs font-semibold whitespace-nowrap">
+            Vertrouwd door 50+ eigenaren
+          </p>
+        </div>
+      </div>
+    </div>
+    </>
   )
 }
