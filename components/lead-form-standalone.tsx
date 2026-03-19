@@ -112,27 +112,13 @@ export function LeadFormStandalone() {
   const validateStepB = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {}
 
-    if (!formData.accommodationName.trim()) {
-      newErrors.accommodationName = "Naam accommodatie is verplicht"
-    }
-    if (!formData.locationCity.trim()) {
-      newErrors.locationCity = "Plaats/regio is verplicht"
-    }
-    if (!formData.locationCountry.trim()) {
-      newErrors.locationCountry = "Land is verplicht"
-    }
-    if (!formData.platformLink.trim()) {
-      newErrors.platformLink = "Platform link is verplicht"
-    }
-    if (!formData.keyFeatures.trim()) {
-      newErrors.keyFeatures = "Kernpunten zijn verplicht"
-    }
-    if (!formData.colorPreference.trim()) {
-      newErrors.colorPreference = "Kleurvoorkeur is verplicht"
-    }
-    if (!formData.consent) {
-      newErrors.consent = "Je moet akkoord gaan met de voorwaarden"
-    }
+    if (!formData.accommodationName.trim()) newErrors.accommodationName = "Naam accommodatie is verplicht"
+    if (!formData.locationCity.trim()) newErrors.locationCity = "Plaats/regio is verplicht"
+    if (!formData.locationCountry.trim()) newErrors.locationCountry = "Land is verplicht"
+    if (!formData.platformLink.trim()) newErrors.platformLink = "Platform link is verplicht"
+    if (!formData.keyFeatures.trim()) newErrors.keyFeatures = "Kernpunten zijn verplicht"
+    if (!formData.colorPreference.trim()) newErrors.colorPreference = "Kleurvoorkeur is verplicht"
+    if (!formData.consent) newErrors.consent = "Je moet akkoord gaan met de voorwaarden"
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -141,12 +127,10 @@ export function LeadFormStandalone() {
   const handleSubmit = async () => {
     setSubmitError("")
     if (!validateStepB()) return
-
     setIsSubmitting(true)
 
     try {
       const ghlParams = new URLSearchParams()
-
       Object.entries({
         ...formData,
         source: "voorbeeldwebsite",
@@ -187,8 +171,8 @@ export function LeadFormStandalone() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1a3fd3] flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#1a3fd3]">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
         <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
             {step === "success" ? "Aanvraag ontvangen" : "Gratis voorbeeldwebsite aanvragen"}
