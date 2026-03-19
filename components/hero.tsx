@@ -52,13 +52,13 @@ export function Hero() {
             </p>
 
             {/* Main Headline */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-6 text-balance">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-black leading-tight mb-6 text-balance">
               Krijg minimaal 3 directe boekingen in 90 dagen via je eigen boekingswebsite{" "}
               <span className="text-[#FCF300]">— of je betaalt niets.</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-4 max-w-xl">
+            <p className="text-base md:text-xl text-white/90 leading-relaxed mb-4 max-w-xl">
               Wij bouwen jouw boekingswebsite met een direct-aanvraag systeem, zodat je niet langer elk jaar{" "}
               <strong className="text-[#FCF300]">{"€2.000–€5.000"}</strong> kwijt bent aan platformkosten.
             </p>
