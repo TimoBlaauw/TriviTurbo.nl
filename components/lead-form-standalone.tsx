@@ -89,9 +89,7 @@ export function LeadFormStandalone() {
 
   const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setFormData((prev) => ({ ...prev, [key]: value }))
-    if (errors[key]) {
-      setErrors((prev) => ({ ...prev, [key]: undefined }))
-    }
+    if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }))
   }
 
   const validateStepA = (): boolean => {
@@ -188,17 +186,10 @@ export function LeadFormStandalone() {
     }
   }
 
-  const isCompactStep = step !== "B"
-
   return (
-    <div className="h-[100dvh] bg-[#1a3fd3] p-4 md:p-6 flex items-start md:items-center justify-center overflow-hidden">
-      <div
-        className={`relative w-full max-w-2xl rounded-3xl bg-white shadow-2xl border border-white/30 overflow-hidden flex flex-col ${isCompactStep
-          ? ""
-          : "h-[calc(100dvh-2rem)] md:h-[calc(100dvh-3rem)] max-h-[820px]"
-          }`}
-      >
-        <div className="shrink-0 bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
+    <div className="min-h-screen bg-[#1a3fd3] flex items-center justify-center p-4">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
             {step === "success" ? "Aanvraag ontvangen" : "Gratis voorbeeldwebsite aanvragen"}
           </h2>
@@ -230,10 +221,7 @@ export function LeadFormStandalone() {
           )}
         </div>
 
-        <div
-          className={`p-6 md:p-8 ${step === "B" ? "flex-1 min-h-0 overflow-y-auto overscroll-contain" : ""
-            }`}
-        >
+        <div className="p-6 md:p-8 overflow-y-auto overscroll-contain max-h-[calc(90vh-180px)]">
           {submitError && (
             <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
               {submitError}
@@ -315,8 +303,7 @@ export function LeadFormStandalone() {
                     value={formData.accommodationName}
                     onChange={(e) => updateField("accommodationName", e.target.value)}
                     placeholder="Bijv. Villa Zeezicht"
-                    className={`w-full px-4 py-3 rounded-xl border ${errors.accommodationName ? "border-red-400" : "border-[#072AC8]/12"
-                      } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
+                    className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                   />
                   {errors.accommodationName && (
                     <p className="text-red-500 text-sm mt-1">{errors.accommodationName}</p>
@@ -330,8 +317,7 @@ export function LeadFormStandalone() {
                     value={formData.locationCountry}
                     onChange={(e) => updateField("locationCountry", e.target.value)}
                     placeholder="Bijv. Nederland"
-                    className={`w-full px-4 py-3 rounded-xl border ${errors.locationCountry ? "border-red-400" : "border-[#072AC8]/12"
-                      } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
+                    className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                   />
                   {errors.locationCountry && (
                     <p className="text-red-500 text-sm mt-1">{errors.locationCountry}</p>
@@ -346,8 +332,7 @@ export function LeadFormStandalone() {
                   value={formData.locationCity}
                   onChange={(e) => updateField("locationCity", e.target.value)}
                   placeholder="Bijv. Burgh-Haamstede"
-                  className={`w-full px-4 py-3 rounded-xl border ${errors.locationCity ? "border-red-400" : "border-[#072AC8]/12"
-                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 />
                 {errors.locationCity && <p className="text-red-500 text-sm mt-1">{errors.locationCity}</p>}
               </div>
@@ -361,21 +346,21 @@ export function LeadFormStandalone() {
                   value={formData.platformLink}
                   onChange={(e) => updateField("platformLink", e.target.value)}
                   placeholder="Bijv. https://www.airbnb.com/rooms/12345678"
-                  className={`w-full px-4 py-3 rounded-xl border ${errors.platformLink ? "border-red-400" : "border-[#072AC8]/12"
-                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 />
                 {errors.platformLink && <p className="text-red-500 text-sm mt-1">{errors.platformLink}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">Noem minimaal 5 kenmerken die jouw accommodatie uniek maken. *</label>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">
+                  Noem minimaal 5 kenmerken die jouw accommodatie uniek maken. *
+                </label>
                 <textarea
                   value={formData.keyFeatures}
                   onChange={(e) => updateField("keyFeatures", e.target.value)}
                   placeholder="Bijv. zwembad, zeezicht, 6 personen, privé terras, gratis parkeren"
                   rows={2}
-                  className={`w-full px-4 py-3 rounded-xl border ${errors.keyFeatures ? "border-red-400" : "border-[#072AC8]/12"
-                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all resize-none`}
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white resize-none"
                 />
                 {errors.keyFeatures && <p className="text-red-500 text-sm mt-1">{errors.keyFeatures}</p>}
               </div>
@@ -387,8 +372,7 @@ export function LeadFormStandalone() {
                   value={formData.colorPreference}
                   onChange={(e) => updateField("colorPreference", e.target.value)}
                   placeholder="Bijv. donkerblauw, wit en goud"
-                  className={`w-full px-4 py-3 rounded-xl border ${errors.colorPreference ? "border-red-400" : "border-[#072AC8]/12"
-                    } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 />
                 {errors.colorPreference && (
                   <p className="text-red-500 text-sm mt-1">{errors.colorPreference}</p>
@@ -403,7 +387,7 @@ export function LeadFormStandalone() {
                   placeholder="Huidige website URL"
                   value={formData.currentWebsite}
                   onChange={(e) => updateField("currentWebsite", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 />
 
                 <input
@@ -411,7 +395,7 @@ export function LeadFormStandalone() {
                   placeholder="Google Business Profile URL"
                   value={formData.googleBusinessProfile}
                   onChange={(e) => updateField("googleBusinessProfile", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 />
 
                 <input
@@ -419,13 +403,13 @@ export function LeadFormStandalone() {
                   placeholder="Foto's link (Dropbox/Drive)"
                   value={formData.photosLink}
                   onChange={(e) => updateField("photosLink", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 />
 
                 <select
                   value={formData.managesOwnBooking}
                   onChange={(e) => updateField("managesOwnBooking", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white text-[#072AC8] focus:outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 >
                   <option value="">Beheer je zelf boekingen?</option>
                   <option value="yes">Ja</option>
