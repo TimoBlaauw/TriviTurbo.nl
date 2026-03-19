@@ -172,7 +172,7 @@ export function LeadFormStandalone() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#1a3fd3]">
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[82svh] md:max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
         <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
             {step === "success" ? "Aanvraag ontvangen" : "Gratis voorbeeldwebsite aanvragen"}
@@ -205,7 +205,7 @@ export function LeadFormStandalone() {
           )}
         </div>
 
-        <div className="p-6 md:p-8 overflow-y-auto overscroll-contain max-h-[calc(90vh-180px)]">
+        <div className="p-6 md:p-8 overflow-y-auto overscroll-contain max-h-[calc(82svh-180px)] md:max-h-[calc(90vh-180px)]">
           {submitError && (
             <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
               {submitError}
