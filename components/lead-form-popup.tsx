@@ -267,7 +267,7 @@ export function LeadFormPopup() {
                     type="text"
                     value={formData.accommodationName}
                     onChange={(e) => updateField("accommodationName", e.target.value)}
-                    placeholder="Bijv. Villa Sunset"
+                    placeholder="Bijv. Villa Zeezicht"
                     className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                   />
                   {errors.accommodationName && (
@@ -280,7 +280,7 @@ export function LeadFormPopup() {
                     type="text"
                     value={formData.locationCountry}
                     onChange={(e) => updateField("locationCountry", e.target.value)}
-                    placeholder="Bijv. Portugal"
+                    placeholder="Bijv. Nederland"
                     className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                   />
                   {errors.locationCountry && (
@@ -294,7 +294,7 @@ export function LeadFormPopup() {
                   type="text"
                   value={formData.locationCity}
                   onChange={(e) => updateField("locationCity", e.target.value)}
-                  placeholder="Bijv. Algarve"
+                  placeholder="Bijv. Burgh-Haamstede"
                   className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
                 />
               </div>
