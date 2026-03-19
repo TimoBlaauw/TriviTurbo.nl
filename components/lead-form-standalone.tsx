@@ -173,7 +173,7 @@ export function LeadFormStandalone() {
   }
 
   return (
-    <div className="min-h-screen bg-white px-4 py-8 md:px-6 md:py-12 flex items-center justify-center">
+    <div className="min-h-screen bg-[#1a3fd3] px-4 py-8 md:px-6 md:py-12 flex items-center justify-center">
       <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden border border-[#072AC8]/10">
         <div className="bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-black text-white pr-10">
