@@ -194,8 +194,8 @@ export function LeadFormStandalone() {
     <div className="h-[100dvh] bg-[#1a3fd3] p-4 md:p-6 flex items-start md:items-center justify-center overflow-hidden">
       <div
         className={`relative w-full max-w-2xl rounded-3xl bg-white shadow-2xl border border-white/30 overflow-hidden flex flex-col ${isCompactStep
-            ? ""
-            : "h-[calc(100dvh-2rem)] md:h-[calc(100dvh-3rem)] max-h-[820px]"
+          ? ""
+          : "h-[calc(100dvh-2rem)] md:h-[calc(100dvh-3rem)] max-h-[820px]"
           }`}
       >
         <div className="shrink-0 bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
@@ -314,7 +314,7 @@ export function LeadFormStandalone() {
                     type="text"
                     value={formData.accommodationName}
                     onChange={(e) => updateField("accommodationName", e.target.value)}
-                    placeholder="Bijv. Villa Sunset"
+                    placeholder="Bijv. Villa Zeezicht"
                     className={`w-full px-4 py-3 rounded-xl border ${errors.accommodationName ? "border-red-400" : "border-[#072AC8]/12"
                       } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                   />
@@ -329,7 +329,7 @@ export function LeadFormStandalone() {
                     type="text"
                     value={formData.locationCountry}
                     onChange={(e) => updateField("locationCountry", e.target.value)}
-                    placeholder="Bijv. Portugal"
+                    placeholder="Bijv. Nederland"
                     className={`w-full px-4 py-3 rounded-xl border ${errors.locationCountry ? "border-red-400" : "border-[#072AC8]/12"
                       } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                   />
@@ -345,7 +345,7 @@ export function LeadFormStandalone() {
                   type="text"
                   value={formData.locationCity}
                   onChange={(e) => updateField("locationCity", e.target.value)}
-                  placeholder="Bijv. Algarve"
+                  placeholder="Bijv. Burgh-Haamstede"
                   className={`w-full px-4 py-3 rounded-xl border ${errors.locationCity ? "border-red-400" : "border-[#072AC8]/12"
                     } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                 />
@@ -368,7 +368,7 @@ export function LeadFormStandalone() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">5 kernpunten *</label>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">Noem minimaal 5 kenmerken die jouw accommodatie uniek maken. *</label>
                 <textarea
                   value={formData.keyFeatures}
                   onChange={(e) => updateField("keyFeatures", e.target.value)}
