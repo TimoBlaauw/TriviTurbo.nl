@@ -478,17 +478,34 @@ export function LeadFormStandalone() {
           )}
 
           {step === "success" && (
-            <div className="h-full flex flex-col items-center justify-center text-center py-12">
+            <div className="text-center py-12">
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="w-10 h-10 text-green-600" />
               </div>
-              <h3 className="text-2xl font-bold text-[#072AC8] mb-4">Bedankt voor je aanvraag!</h3>
+
+              <h3 className="text-2xl font-bold text-[#072AC8] mb-4">
+                Bedankt voor je aanvraag!
+              </h3>
+
               <p className="text-[#4b5b8a] mb-8">
                 We gaan direct aan de slag. Je hoort uiterlijk morgen van ons.
               </p>
-              <Button onClick={resetForm} className="bg-[#072AC8] text-white px-8 py-3 rounded-xl">
-                Nieuwe aanvraag versturen
+
+              <Button
+                onClick={() => {
+                  window.location.href = "https://triviturbo.nl"
+                }}
+                className="bg-[#072AC8] text-white px-8 py-3 rounded-xl"
+              >
+                Terug naar TriviTurbo.nl
               </Button>
+
+              <a
+                href="https://triviturbo.nl"
+                className="block mt-4 text-sm text-[#072AC8] underline underline-offset-4"
+              >
+                triviturbo.nl
+              </a>
             </div>
           )}
         </div>

@@ -263,30 +263,72 @@ export function LeadFormPopup() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-bold text-[#072AC8] mb-2">Naam accommodatie *</label>
-                  <input type="text" value={formData.accommodationName} onChange={(e) => updateField("accommodationName", e.target.value)} className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white" />
-                  {errors.accommodationName && <p className="text-red-500 text-sm mt-1">{errors.accommodationName}</p>}
+                  <input
+                    type="text"
+                    value={formData.accommodationName}
+                    onChange={(e) => updateField("accommodationName", e.target.value)}
+                    placeholder="Bijv. Villa Sunset"
+                    className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  />
+                  {errors.accommodationName && (
+                    <p className="text-red-500 text-sm mt-1">{errors.accommodationName}</p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-[#072AC8] mb-2">Land *</label>
-                  <input type="text" value={formData.locationCountry} onChange={(e) => updateField("locationCountry", e.target.value)} className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white" />
-                  {errors.locationCountry && <p className="text-red-500 text-sm mt-1">{errors.locationCountry}</p>}
+                  <input
+                    type="text"
+                    value={formData.locationCountry}
+                    onChange={(e) => updateField("locationCountry", e.target.value)}
+                    placeholder="Bijv. Portugal"
+                    className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                  />
+                  {errors.locationCountry && (
+                    <p className="text-red-500 text-sm mt-1">{errors.locationCountry}</p>
+                  )}
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-bold text-[#072AC8] mb-2">Plaats/Regio *</label>
-                <input type="text" value={formData.locationCity} onChange={(e) => updateField("locationCity", e.target.value)} className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white" />
+                <input
+                  type="text"
+                  value={formData.locationCity}
+                  onChange={(e) => updateField("locationCity", e.target.value)}
+                  placeholder="Bijv. Algarve"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                />
               </div>
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">Platform link (Airbnb/Booking) *</label>
-                <input type="url" value={formData.platformLink} onChange={(e) => updateField("platformLink", e.target.value)} className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white" />
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">
+                  Platform link (Airbnb/Booking) *
+                </label>
+                <input
+                  type="url"
+                  value={formData.platformLink}
+                  onChange={(e) => updateField("platformLink", e.target.value)}
+                  placeholder="Bijv. https://www.airbnb.com/rooms/12345678"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                />
               </div>
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">5 kernpunten *</label>
-                <textarea value={formData.keyFeatures} onChange={(e) => updateField("keyFeatures", e.target.value)} rows={2} className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white resize-none" />
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">Noem minimaal 5 kenmerken die jouw accommodatie uniek maken. *</label>
+                <textarea
+                  value={formData.keyFeatures}
+                  onChange={(e) => updateField("keyFeatures", e.target.value)}
+                  placeholder="Bijv. zwembad, zeezicht, 6 personen, privé terras, gratis parkeren"
+                  rows={2}
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white resize-none"
+                />
               </div>
               <div>
                 <label className="block text-sm font-bold text-[#072AC8] mb-2">Kleurvoorkeur *</label>
-                <input type="text" value={formData.colorPreference} onChange={(e) => updateField("colorPreference", e.target.value)} className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white" />
+                <input
+                  type="text"
+                  value={formData.colorPreference}
+                  onChange={(e) => updateField("colorPreference", e.target.value)}
+                  placeholder="Bijv. donkerblauw, wit en goud"
+                  className="w-full px-4 py-3 rounded-xl border border-[#072AC8]/12 bg-white"
+                />
               </div>
 
               <div className="border-t pt-5 mt-6 space-y-4">
