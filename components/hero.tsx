@@ -52,13 +52,13 @@ export function Hero() {
             </p>
 
             {/* Main Headline */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-6 text-balance">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-black leading-tight mb-6 text-balance">
               Krijg minimaal 3 directe boekingen in 90 dagen via je eigen boekingswebsite{" "}
               <span className="text-[#FCF300]">— of je betaalt niets.</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-4 max-w-xl">
+            <p className="text-base md:text-xl text-white/90 leading-relaxed mb-4 max-w-xl">
               Wij bouwen jouw boekingswebsite met een direct-aanvraag systeem, zodat je niet langer elk jaar{" "}
               <strong className="text-[#FCF300]">{"€2.000–€5.000"}</strong> kwijt bent aan platformkosten.
             </p>
@@ -107,8 +107,8 @@ export function Hero() {
             </div>
 
 
-            {/* Trust Row with Stars and Avatars */}
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            {/* Trust Row with Stars and Avatars — desktop only */}
+            <div className="mt-6 hidden lg:flex flex-wrap items-center gap-3">
               {/* Avatar Group */}
               <div className="flex -space-x-2">
                 <img
@@ -128,7 +128,6 @@ export function Hero() {
                 />
               </div>
               <div className="flex flex-col">
-                {/* 5 Stars */}
                 <div className="flex gap-0.5 mb-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-[#FCF300] text-[#FCF300]" />
@@ -160,6 +159,39 @@ export function Hero() {
               <Play className="w-4 h-4" fill="currentColor" />
               5 min uitleg
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trust Row — mobile only, below the fold */}
+      <div className="lg:hidden absolute bottom-6 left-0 right-0 px-4 z-10">
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex -space-x-2">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Linda-7sYNQclmTkltuly8ZW57icmYTzgV40.jpg"
+              alt="Linda"
+              className="w-10 h-10 rounded-full border-2 border-white object-cover"
+            />
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Thomas-cgqrj4PdCzhjCMt3b7HGsjPxtOaBXS.jpg"
+              alt="Thomas"
+              className="w-10 h-10 rounded-full border-2 border-white object-cover"
+            />
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sofia-5HzNdzQWMUaJfQWnnRc7h6qbNOMWI7.jpg"
+              alt="Sofia"
+              className="w-10 h-10 rounded-full border-2 border-white object-cover"
+            />
+          </div>
+          <div className="flex flex-col">
+            <div className="flex gap-0.5 mb-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-[#FCF300] text-[#FCF300]" />
+              ))}
+            </div>
+            <p className="text-white/80 text-sm font-medium">
+              Vertrouwd door 50+ vakantiehuiseigenaren
+            </p>
           </div>
         </div>
       </div>
