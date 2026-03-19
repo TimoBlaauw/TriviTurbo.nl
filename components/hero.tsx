@@ -96,7 +96,7 @@ export function Hero() {
                 size="lg"
                 className="bg-[#FCF300] text-[#072AC8] hover:bg-white font-bold text-sm sm:text-base px-4 sm:px-8 py-5 sm:py-6 rounded-2xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group w-full sm:w-auto"
               >
-                <span className="whitespace-normal sm:whitespace-nowrap">BOUW MIJN GRATIS VOORBEELDWEBSITE</span>
+                <span className="whitespace-normal sm:whitespace-nowrap">Bouw mijn gratis voorbeeldwebsite</span>
               </Button>
             </div>
 
@@ -106,9 +106,8 @@ export function Hero() {
               <span className="text-sm font-medium">Je ontvangt je voorbeeldwebsite binnen 48 uur</span>
             </div>
 
-
-            {/* Trust Row with Stars and Avatars — desktop only */}
-            <div className="mt-6 hidden lg:flex flex-wrap items-center gap-3">
+            {/* Trust Row with Stars and Avatars — always visible, inline in flow */}
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               {/* Avatar Group */}
               <div className="flex -space-x-2">
                 <img
@@ -163,38 +162,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Trust Row — mobile only, below the fold */}
-      <div className="lg:hidden absolute bottom-6 left-0 right-0 px-4 z-10">
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <div className="flex -space-x-2">
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Linda-7sYNQclmTkltuly8ZW57icmYTzgV40.jpg"
-              alt="Linda"
-              className="w-10 h-10 rounded-full border-2 border-white object-cover"
-            />
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Thomas-cgqrj4PdCzhjCMt3b7HGsjPxtOaBXS.jpg"
-              alt="Thomas"
-              className="w-10 h-10 rounded-full border-2 border-white object-cover"
-            />
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sofia-5HzNdzQWMUaJfQWnnRc7h6qbNOMWI7.jpg"
-              alt="Sofia"
-              className="w-10 h-10 rounded-full border-2 border-white object-cover"
-            />
-          </div>
-          <div className="flex flex-col">
-            <div className="flex gap-0.5 mb-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-[#FCF300] text-[#FCF300]" />
-              ))}
-            </div>
-            <p className="text-white/80 text-sm font-medium">
-              Vertrouwd door 50+ vakantiehuiseigenaren
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   )
 }
