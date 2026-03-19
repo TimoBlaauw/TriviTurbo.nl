@@ -140,14 +140,6 @@ export function LeadFormStandalone() {
     return Object.keys(newErrors).length === 0
   }
 
-  const resetForm = () => {
-    setStep("A")
-    setFormData(initialFormData)
-    setErrors({})
-    setIsSubmitting(false)
-    setSubmitError("")
-  }
-
   const handleSubmit = async () => {
     setSubmitError("")
     if (!validateStepB()) return
@@ -196,14 +188,14 @@ export function LeadFormStandalone() {
     }
   }
 
-  const isCompactStep = step === "A"
+  const isCompactStep = step !== "B"
 
   return (
     <div className="h-[100dvh] bg-[#1a3fd3] p-4 md:p-6 flex items-start md:items-center justify-center overflow-hidden">
       <div
         className={`relative w-full max-w-2xl rounded-3xl bg-white shadow-2xl border border-white/30 overflow-hidden flex flex-col ${isCompactStep
-          ? ""
-          : "h-[calc(100dvh-2rem)] md:h-[calc(100dvh-3rem)] max-h-[820px]"
+            ? ""
+            : "h-[calc(100dvh-2rem)] md:h-[calc(100dvh-3rem)] max-h-[820px]"
           }`}
       >
         <div className="shrink-0 bg-gradient-to-r from-[#072AC8] to-[#0095FF] p-6 md:p-8">
@@ -239,7 +231,7 @@ export function LeadFormStandalone() {
         </div>
 
         <div
-          className={`p-6 md:p-8 ${isCompactStep ? "" : "flex-1 min-h-0 overflow-y-auto overscroll-contain"
+          className={`p-6 md:p-8 ${step === "B" ? "flex-1 min-h-0 overflow-y-auto overscroll-contain" : ""
             }`}
         >
           {submitError && (
@@ -322,7 +314,7 @@ export function LeadFormStandalone() {
                     type="text"
                     value={formData.accommodationName}
                     onChange={(e) => updateField("accommodationName", e.target.value)}
-                    placeholder="Bijv. Villa Zeezicht"
+                    placeholder="Bijv. Villa Sunset"
                     className={`w-full px-4 py-3 rounded-xl border ${errors.accommodationName ? "border-red-400" : "border-[#072AC8]/12"
                       } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                   />
@@ -337,7 +329,7 @@ export function LeadFormStandalone() {
                     type="text"
                     value={formData.locationCountry}
                     onChange={(e) => updateField("locationCountry", e.target.value)}
-                    placeholder="Bijv. Nederland"
+                    placeholder="Bijv. Portugal"
                     className={`w-full px-4 py-3 rounded-xl border ${errors.locationCountry ? "border-red-400" : "border-[#072AC8]/12"
                       } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                   />
@@ -353,7 +345,7 @@ export function LeadFormStandalone() {
                   type="text"
                   value={formData.locationCity}
                   onChange={(e) => updateField("locationCity", e.target.value)}
-                  placeholder="Bijv. Burgh-Haamstede"
+                  placeholder="Bijv. Algarve"
                   className={`w-full px-4 py-3 rounded-xl border ${errors.locationCity ? "border-red-400" : "border-[#072AC8]/12"
                     } bg-white text-[#072AC8] focus:outline-none focus:ring-2 focus:ring-[#0095FF]/30 transition-all`}
                 />
@@ -376,7 +368,7 @@ export function LeadFormStandalone() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#072AC8] mb-2">Noem minimaal 5 kenmerken die jouw accommodatie uniek maken. *</label>
+                <label className="block text-sm font-bold text-[#072AC8] mb-2">5 kernpunten *</label>
                 <textarea
                   value={formData.keyFeatures}
                   onChange={(e) => updateField("keyFeatures", e.target.value)}
@@ -476,6 +468,7 @@ export function LeadFormStandalone() {
               </div>
             </div>
           )}
+
           {step === "success" && (
             <div className="text-center py-12">
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -498,16 +491,8 @@ export function LeadFormStandalone() {
               >
                 Terug naar TriviTurbo.nl
               </Button>
-
-              <a
-                href="https://triviturbo.nl"
-                className="block mt-4 text-sm text-[#072AC8] underline underline-offset-4"
-              >
-                triviturbo.nl
-              </a>
             </div>
           )}
-
         </div>
       </div>
     </div>
