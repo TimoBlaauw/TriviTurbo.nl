@@ -140,14 +140,6 @@ export function LeadFormStandalone() {
     return Object.keys(newErrors).length === 0
   }
 
-  const resetForm = () => {
-    setStep("A")
-    setFormData(initialFormData)
-    setErrors({})
-    setIsSubmitting(false)
-    setSubmitError("")
-  }
-
   const handleSubmit = async () => {
     setSubmitError("")
     if (!validateStepB()) return
@@ -196,7 +188,7 @@ export function LeadFormStandalone() {
     }
   }
 
-  const isCompactStep = step === "A"
+  const isCompactStep = step !== "B"
 
   return (
     <div className="h-[100dvh] bg-[#1a3fd3] p-4 md:p-6 flex items-start md:items-center justify-center overflow-hidden">
@@ -239,7 +231,7 @@ export function LeadFormStandalone() {
         </div>
 
         <div
-          className={`p-6 md:p-8 ${isCompactStep ? "" : "flex-1 min-h-0 overflow-y-auto overscroll-contain"
+          className={`p-6 md:p-8 ${step === "B" ? "flex-1 min-h-0 overflow-y-auto overscroll-contain" : ""
             }`}
         >
           {submitError && (
@@ -499,13 +491,6 @@ export function LeadFormStandalone() {
               >
                 Terug naar TriviTurbo.nl
               </Button>
-
-              <a
-                href="https://triviturbo.nl"
-                className="block mt-4 text-sm text-[#072AC8] underline underline-offset-4"
-              >
-                triviturbo.nl
-              </a>
             </div>
           )}
         </div>
