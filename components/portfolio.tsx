@@ -80,7 +80,7 @@ export function Portfolio() {
         {/* Portfolio Items - Desktop Grid / Mobile Carousel */}
         <div
           ref={portfolioAnimation.ref}
-          className="mb-20 md:mb-28 max-w-5xl mx-auto transition-all duration-700 ease-out"
+          className="mb-20 md:mb-36 max-w-5xl mx-auto transition-all duration-700 ease-out"
           style={{
             opacity: portfolioAnimation.isVisible ? 1 : 0,
             transform: portfolioAnimation.isVisible
