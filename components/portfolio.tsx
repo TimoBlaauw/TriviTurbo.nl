@@ -80,7 +80,7 @@ export function Portfolio() {
         {/* Portfolio Items - Desktop Grid / Mobile Carousel */}
         <div
           ref={portfolioAnimation.ref}
-          className="mb-20 md:mb-28 max-w-4xl mx-auto transition-all duration-700 ease-out"
+          className="mb-20 md:mb-28 max-w-5xl mx-auto transition-all duration-700 ease-out"
           style={{
             opacity: portfolioAnimation.isVisible ? 1 : 0,
             transform: portfolioAnimation.isVisible
@@ -89,46 +89,46 @@ export function Portfolio() {
           }}
         >
           {/* Desktop Grid */}
-          <div className="hidden md:grid md:grid-cols-2 gap-6">
+          <div className="hidden md:grid md:grid-cols-2 gap-8">
             {portfolioItems.map((item, index) => (
-              <div key={index} className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-2xl p-5 border border-[#072AC8]/10 shadow-lg overflow-hidden flex flex-col">
-                <div className="relative mb-5">
+              <div key={index} className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-2xl p-6 border border-[#072AC8]/10 shadow-lg overflow-hidden flex flex-col">
+                <div className="relative mb-6">
                   <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#072AC8]/10">
-                    <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-3 py-2 flex items-center gap-2 border-b">
+                    <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-4 py-2.5 flex items-center gap-2 border-b">
                       <div className="flex gap-1.5 flex-shrink-0">
-                        <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                        <div className="w-3 h-3 rounded-full bg-red-400" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                        <div className="w-3 h-3 rounded-full bg-green-400" />
                       </div>
-                      <div className="flex-1 mx-2 min-w-0">
-                        <div className="bg-white rounded px-2 py-0.5 text-xs text-gray-400 flex items-center gap-1.5 min-w-0 overflow-hidden">
-                          <svg className="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="flex-1 mx-3 min-w-0">
+                        <div className="bg-white rounded-md px-3 py-1 text-sm text-gray-400 flex items-center gap-2 min-w-0 overflow-hidden">
+                          <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
                           <span className="truncate">{item.domain}</span>
                         </div>
                       </div>
                     </div>
-                    <Image src={item.image} alt={`${item.name} website screenshot`} width={500} height={313} className="w-full h-auto" style={{ height: "auto" }} />
+                    <Image src={item.image} alt={`${item.name} website screenshot`} width={600} height={375} className="w-full h-auto" style={{ height: "auto" }} />
                   </div>
-                  <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-3 py-1 rounded-full font-bold text-xs shadow-lg">
+                  <div className="absolute -top-3 right-3 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-4 py-1.5 rounded-full font-bold text-sm shadow-lg">
                     Live Website
                   </div>
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <h3 className="text-xl font-black text-[#072AC8] mb-2">{item.name}</h3>
-                  <p className="text-[#4b5b8a] text-sm leading-relaxed mb-4 flex-grow">{item.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-5">
+                  <h3 className="text-2xl font-black text-[#072AC8] mb-3">{item.name}</h3>
+                  <p className="text-[#4b5b8a] text-base leading-relaxed mb-5 flex-grow">{item.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {item.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="bg-[#0095FF]/10 text-[#072AC8] px-3 py-1.5 rounded-full text-xs font-semibold">{tag}</span>
+                      <span key={tagIndex} className="bg-[#0095FF]/10 text-[#072AC8] px-4 py-2 rounded-full text-sm font-semibold">{tag}</span>
                     ))}
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-105 text-sm">
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-105 text-base">
                       Bekijk live voorbeeld
                       <ExternalLink className="w-4 h-4" />
                     </a>
-                    <Button onClick={openPopup} variant="outline" className="border-2 border-[#072AC8]/20 text-[#072AC8] font-bold px-5 py-2.5 rounded-xl hover:bg-[#072AC8] hover:text-white transition-all text-sm">
+                    <Button onClick={openPopup} variant="outline" className="border-2 border-[#072AC8]/20 text-[#072AC8] font-bold px-6 py-3 rounded-xl hover:bg-[#072AC8] hover:text-white transition-all text-base">
                       Dit wil ik ook
                     </Button>
                   </div>
