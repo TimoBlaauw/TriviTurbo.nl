@@ -87,7 +87,7 @@ export function Portfolio() {
                 </div>
                 {/* Screenshot */}
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot-website-we-build-before-PeSzrzylwQ8tCQfHcqyxCzm6VI7uXS.png"
+                  src="/images/landal-bad-bentheim-screenshot.jpg"
                   alt="Landal Bad Bentheim 309 website screenshot"
                   width={600}
                   height={375}
@@ -162,14 +162,15 @@ export function Portfolio() {
                     </div>
                   </div>
                 </div>
-                {/* Screenshot placeholder - using gradient as placeholder until real screenshot is provided */}
-                <div className="w-full aspect-[16/10] bg-gradient-to-br from-[#f5e6d3] via-[#e8d5c4] to-[#d4c4b0] flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <div className="text-4xl mb-2">🫒</div>
-                    <p className="text-[#8b7355] font-semibold text-lg">El Olivo Dorado</p>
-                    <p className="text-[#a08b70] text-sm">Bed & Breakfast • Ronda, Spanje</p>
-                  </div>
-                </div>
+                {/* Screenshot */}
+                <Image
+                  src="/images/el-olivo-dorado-screenshot.jpg"
+                  alt="El Olivo Dorado website screenshot"
+                  width={600}
+                  height={375}
+                  className="w-full h-auto"
+                  style={{ height: "auto" }}
+                />
               </div>
               {/* Badge */}
               <div className="absolute -top-3 right-3 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-3 py-1.5 rounded-full font-bold text-xs shadow-lg">
