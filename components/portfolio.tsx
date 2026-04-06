@@ -125,7 +125,7 @@ export function Portfolio() {
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-105 text-base">
-                      Bekijk live voorbeeld
+                      Bekijk live website
                       <ExternalLink className="w-4 h-4" />
                     </a>
                     <Button onClick={openPopup} variant="outline" className="border-2 border-[#072AC8]/20 text-[#072AC8] font-bold px-6 py-3 rounded-xl hover:bg-[#072AC8] hover:text-white transition-all text-base">
@@ -142,7 +142,7 @@ export function Portfolio() {
             <div className="relative">
               {/* Carousel Container */}
               <div className="overflow-hidden rounded-2xl">
-                <div 
+                <div
                   className="flex transition-transform duration-300 ease-out"
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                 >
@@ -182,7 +182,7 @@ export function Portfolio() {
                           </div>
                           <div className="flex flex-col gap-3">
                             <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all text-sm">
-                              Bekijk live voorbeeld
+                              Bekijk live website
                               <ExternalLink className="w-4 h-4" />
                             </a>
                             <Button onClick={openPopup} variant="outline" className="border-2 border-[#072AC8]/20 text-[#072AC8] font-bold px-5 py-2.5 rounded-xl hover:bg-[#072AC8] hover:text-white transition-all text-sm w-full">
@@ -219,11 +219,10 @@ export function Portfolio() {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${
-                    currentSlide === index 
-                      ? 'bg-[#072AC8] w-6' 
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${currentSlide === index
+                      ? 'bg-[#072AC8] w-6'
                       : 'bg-[#072AC8]/30 hover:bg-[#072AC8]/50'
-                  }`}
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
