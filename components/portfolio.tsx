@@ -57,7 +57,7 @@ export function Portfolio() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length)
 
   return (
-    <section id="voorbeeld" className="py-20 md:py-28 bg-white scroll-mt-20 overflow-x-hidden">
+    <section id="voorbeeld" className="py-20 md:py-28 bg-gradient-to-b from-[#f0f6ff] via-[#f0f6ff] to-white scroll-mt-20 overflow-x-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div

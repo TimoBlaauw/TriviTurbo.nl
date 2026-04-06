@@ -131,7 +131,7 @@ export function Solution() {
   return (
     <section
       id="hoe-het-werkt"
-      className="py-20 md:py-28 bg-gradient-to-b from-[#f0f6ff] to-white overflow-hidden"
+      className="py-20 md:py-28 bg-gradient-to-b from-[#f0f6ff] to-[#f0f6ff] overflow-hidden"
     >
       <div className="container mx-auto px-4">
         {/* Intro */}
