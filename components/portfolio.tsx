@@ -3,8 +3,9 @@
 import Image from "next/image"
 import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Quote, Clock } from "lucide-react"
+import { ExternalLink, Quote, Clock, ChevronLeft, ChevronRight } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { useState } from "react"
 
 const testimonials = [
   {
@@ -24,13 +25,36 @@ const testimonials = [
   },
 ]
 
+const portfolioItems = [
+  {
+    name: "El Olivo Dorado",
+    url: "https://www.elolivodorado.es/",
+    domain: "elolivodorado.es",
+    image: "/images/el-olivo-dorado-screenshot.jpg",
+    description: "Sfeervolle bed & breakfast in Ronda, Zuid-Spanje. Volledig geïntegreerd boekingssysteem met online betaling en meertalige ondersteuning.",
+    tags: ["Boekingssysteem", "Online betalen", "Meertalig"],
+  },
+  {
+    name: "Landal Bad Bentheim 309",
+    url: "https://landalbadbentheim309.de",
+    domain: "landalbadbentheim309.de",
+    image: "/images/landal-bad-bentheim-screenshot.jpg",
+    description: "Vakantiewoning in het Duitse graafschap Bad Bentheim met directe doorklik naar het officiële Landal boekingskanaal.",
+    tags: ["Mobielvriendelijk", "Snelle laadtijd", "Doorklik boeken"],
+  },
+]
+
 export function Portfolio() {
   const { openPopup } = usePopup()
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   const headerAnimation = useScrollAnimation<HTMLDivElement>()
   const portfolioAnimation = useScrollAnimation<HTMLDivElement>()
   const testimonialsAnimation = useScrollAnimation<HTMLDivElement>()
   const ctaAnimation = useScrollAnimation<HTMLDivElement>()
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % portfolioItems.length)
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length)
 
   return (
     <section id="voorbeeld" className="py-20 md:py-28 bg-white scroll-mt-20 overflow-x-hidden">
@@ -53,10 +77,10 @@ export function Portfolio() {
           </p>
         </div>
 
-        {/* Portfolio Items Grid */}
+        {/* Portfolio Items - Desktop Grid / Mobile Carousel */}
         <div
           ref={portfolioAnimation.ref}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 max-w-4xl mx-auto transition-all duration-700 ease-out"
+          className="mb-16 max-w-4xl mx-auto transition-all duration-700 ease-out"
           style={{
             opacity: portfolioAnimation.isVisible ? 1 : 0,
             transform: portfolioAnimation.isVisible
@@ -64,134 +88,147 @@ export function Portfolio() {
               : "translateY(30px) scale(0.98)",
           }}
         >
-          {/* Card 1: Landal Bad Bentheim 309 */}
-          <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-2xl p-4 border border-[#072AC8]/10 shadow-lg overflow-hidden flex flex-col">
-            {/* Device Mockup */}
-            <div className="relative mb-4">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#072AC8]/10">
-                {/* Browser Header */}
-                <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-3 py-2 flex items-center gap-2 border-b">
-                  <div className="flex gap-1 flex-shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-red-400" />
-                    <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                    <div className="w-2 h-2 rounded-full bg-green-400" />
-                  </div>
-                  <div className="flex-1 mx-2 min-w-0">
-                    <div className="bg-white rounded px-2 py-0.5 text-[10px] text-gray-400 flex items-center gap-1 min-w-0 overflow-hidden">
-                      <svg className="w-2 h-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
-                      <span className="truncate">landalbadbentheim309.de</span>
+          {/* Desktop Grid */}
+          <div className="hidden md:grid md:grid-cols-2 gap-6">
+            {portfolioItems.map((item, index) => (
+              <div key={index} className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-2xl p-5 border border-[#072AC8]/10 shadow-lg overflow-hidden flex flex-col">
+                <div className="relative mb-5">
+                  <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#072AC8]/10">
+                    <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-3 py-2 flex items-center gap-2 border-b">
+                      <div className="flex gap-1.5 flex-shrink-0">
+                        <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                      </div>
+                      <div className="flex-1 mx-2 min-w-0">
+                        <div className="bg-white rounded px-2 py-0.5 text-xs text-gray-400 flex items-center gap-1.5 min-w-0 overflow-hidden">
+                          <svg className="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                          <span className="truncate">{item.domain}</span>
+                        </div>
+                      </div>
                     </div>
+                    <Image src={item.image} alt={`${item.name} website screenshot`} width={500} height={313} className="w-full h-auto" style={{ height: "auto" }} />
+                  </div>
+                  <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-3 py-1 rounded-full font-bold text-xs shadow-lg">
+                    Live Website
                   </div>
                 </div>
-                {/* Screenshot */}
-                <Image
-                  src="/images/landal-bad-bentheim-screenshot.jpg"
-                  alt="Landal Bad Bentheim 309 website screenshot"
-                  width={400}
-                  height={250}
-                  className="w-full h-auto"
-                  style={{ height: "auto" }}
-                />
+                <div className="flex-1 flex flex-col">
+                  <h3 className="text-xl font-black text-[#072AC8] mb-2">{item.name}</h3>
+                  <p className="text-[#4b5b8a] text-sm leading-relaxed mb-4 flex-grow">{item.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {item.tags.map((tag, tagIndex) => (
+                      <span key={tagIndex} className="bg-[#0095FF]/10 text-[#072AC8] px-3 py-1.5 rounded-full text-xs font-semibold">{tag}</span>
+                    ))}
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-105 text-sm">
+                      Bekijk live voorbeeld
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                    <Button onClick={openPopup} variant="outline" className="border-2 border-[#072AC8]/20 text-[#072AC8] font-bold px-5 py-2.5 rounded-xl hover:bg-[#072AC8] hover:text-white transition-all text-sm">
+                      Dit wil ik ook
+                    </Button>
+                  </div>
+                </div>
               </div>
-              {/* Badge */}
-              <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-2 py-1 rounded-full font-bold text-[10px] shadow-lg">
-                Live Website
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="flex-1 flex flex-col">
-              <h3 className="text-lg font-black text-[#072AC8] mb-2">
-                Landal Bad Bentheim 309
-              </h3>
-              <p className="text-[#4b5b8a] text-xs leading-relaxed mb-3 flex-grow">
-                Vakantiewoning in Duitsland met doorklik naar Landal.
-              </p>
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                <span className="bg-[#0095FF]/10 text-[#072AC8] px-2 py-1 rounded-full text-[10px] font-semibold">
-                  Mobielvriendelijk
-                </span>
-                <span className="bg-[#0095FF]/10 text-[#072AC8] px-2 py-1 rounded-full text-[10px] font-semibold">
-                  Snelle laadtijd
-                </span>
-              </div>
-              <a
-                href="https://landalbadbentheim309.de"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105 text-xs"
-              >
-                Bekijk live
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
+            ))}
           </div>
 
-          {/* Card 2: El Olivo Dorado */}
-          <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-2xl p-4 border border-[#072AC8]/10 shadow-lg overflow-hidden flex flex-col">
-            {/* Device Mockup */}
-            <div className="relative mb-4">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#072AC8]/10">
-                {/* Browser Header */}
-                <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-3 py-2 flex items-center gap-2 border-b">
-                  <div className="flex gap-1 flex-shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-red-400" />
-                    <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                    <div className="w-2 h-2 rounded-full bg-green-400" />
-                  </div>
-                  <div className="flex-1 mx-2 min-w-0">
-                    <div className="bg-white rounded px-2 py-0.5 text-[10px] text-gray-400 flex items-center gap-1 min-w-0 overflow-hidden">
-                      <svg className="w-2 h-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
-                      <span className="truncate">elolivodorado.es</span>
+          {/* Mobile Carousel */}
+          <div className="md:hidden">
+            <div className="relative">
+              {/* Carousel Container */}
+              <div className="overflow-hidden rounded-2xl">
+                <div 
+                  className="flex transition-transform duration-300 ease-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {portfolioItems.map((item, index) => (
+                    <div key={index} className="w-full flex-shrink-0 px-1">
+                      <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-2xl p-5 border border-[#072AC8]/10 shadow-lg overflow-hidden flex flex-col">
+                        <div className="relative mb-5">
+                          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#072AC8]/10">
+                            <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-3 py-2 flex items-center gap-2 border-b">
+                              <div className="flex gap-1.5 flex-shrink-0">
+                                <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                              </div>
+                              <div className="flex-1 mx-2 min-w-0">
+                                <div className="bg-white rounded px-2 py-0.5 text-xs text-gray-400 flex items-center gap-1.5 min-w-0 overflow-hidden">
+                                  <svg className="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                  </svg>
+                                  <span className="truncate">{item.domain}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <Image src={item.image} alt={`${item.name} website screenshot`} width={500} height={313} className="w-full h-auto" style={{ height: "auto" }} />
+                          </div>
+                          <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-3 py-1 rounded-full font-bold text-xs shadow-lg">
+                            Live Website
+                          </div>
+                        </div>
+                        <div className="flex-1 flex flex-col">
+                          <h3 className="text-xl font-black text-[#072AC8] mb-2">{item.name}</h3>
+                          <p className="text-[#4b5b8a] text-sm leading-relaxed mb-4">{item.description}</p>
+                          <div className="flex flex-wrap gap-2 mb-5">
+                            {item.tags.map((tag, tagIndex) => (
+                              <span key={tagIndex} className="bg-[#0095FF]/10 text-[#072AC8] px-3 py-1.5 rounded-full text-xs font-semibold">{tag}</span>
+                            ))}
+                          </div>
+                          <div className="flex flex-col gap-3">
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all text-sm">
+                              Bekijk live voorbeeld
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                            <Button onClick={openPopup} variant="outline" className="border-2 border-[#072AC8]/20 text-[#072AC8] font-bold px-5 py-2.5 rounded-xl hover:bg-[#072AC8] hover:text-white transition-all text-sm w-full">
+                              Dit wil ik ook
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-                {/* Screenshot */}
-                <Image
-                  src="/images/el-olivo-dorado-screenshot.jpg"
-                  alt="El Olivo Dorado website screenshot"
-                  width={400}
-                  height={250}
-                  className="w-full h-auto"
-                  style={{ height: "auto" }}
-                />
               </div>
-              {/* Badge */}
-              <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-2 py-1 rounded-full font-bold text-[10px] shadow-lg">
-                Live Website
-              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] hover:bg-[#072AC8] hover:text-white transition-all z-10"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] hover:bg-[#072AC8] hover:text-white transition-all z-10"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Info */}
-            <div className="flex-1 flex flex-col">
-              <h3 className="text-lg font-black text-[#072AC8] mb-2">
-                El Olivo Dorado
-              </h3>
-              <p className="text-[#4b5b8a] text-xs leading-relaxed mb-3 flex-grow">
-                B&B in Spanje met boekingssysteem en online betaling.
-              </p>
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                <span className="bg-[#0095FF]/10 text-[#072AC8] px-2 py-1 rounded-full text-[10px] font-semibold">
-                  Boekingssysteem
-                </span>
-                <span className="bg-[#0095FF]/10 text-[#072AC8] px-2 py-1 rounded-full text-[10px] font-semibold">
-                  Meertalig
-                </span>
-              </div>
-              <a
-                href="https://www.elolivodorado.es/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white font-bold px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105 text-xs"
-              >
-                Bekijk live
-                <ExternalLink className="w-3 h-3" />
-              </a>
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+              {portfolioItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    currentSlide === index 
+                      ? 'bg-[#072AC8] w-6' 
+                      : 'bg-[#072AC8]/30 hover:bg-[#072AC8]/50'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
+            <p className="text-center text-xs text-[#4b5b8a] mt-2">Swipe of klik voor meer voorbeelden</p>
           </div>
         </div>
 
