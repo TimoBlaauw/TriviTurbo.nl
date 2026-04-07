@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Quote, Clock, ChevronLeft, ChevronRight } from "lucide-react"
+import { ExternalLink, Quote, Clock } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useState, useRef } from "react"
 
@@ -199,21 +199,6 @@ export function Portfolio() {
                           <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-3 py-1 rounded-full font-bold text-xs shadow-lg">
                             Live Website
                           </div>
-                          {/* Navigation Arrows - positioned at 50% of screenshot */}
-                          <button
-                            onClick={prevSlide}
-                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] active:bg-[#072AC8] active:text-white transition-all z-10"
-                            aria-label="Previous slide"
-                          >
-                            <ChevronLeft className="w-5 h-5" />
-                          </button>
-                          <button
-                            onClick={nextSlide}
-                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] active:bg-[#072AC8] active:text-white transition-all z-10"
-                            aria-label="Next slide"
-                          >
-                            <ChevronRight className="w-5 h-5" />
-                          </button>
                         </div>
                         <div className="flex-1 flex flex-col">
                           <h3 className="text-xl font-black text-[#072AC8] mb-2">{item.name}</h3>
