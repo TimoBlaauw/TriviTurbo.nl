@@ -5,7 +5,7 @@ import { usePopup } from "@/contexts/popup-context"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Quote, Clock, ChevronLeft, ChevronRight } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 const testimonials = [
   {
@@ -55,6 +55,28 @@ export function Portfolio() {
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % portfolioItems.length)
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length)
+
+  // Touch/swipe handling
+  const touchStartX = useRef<number>(0)
+  const touchEndX = useRef<number>(0)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current
+    const minSwipeDistance = 50
+    if (diff > minSwipeDistance) {
+      nextSlide()
+    } else if (diff < -minSwipeDistance) {
+      prevSlide()
+    }
+  }
 
   return (
     <section id="voorbeeld" className="py-20 md:py-28 bg-gradient-to-b from-[#f0f6ff] via-[#f0f6ff] to-white scroll-mt-20 overflow-x-hidden">
@@ -141,7 +163,12 @@ export function Portfolio() {
           <div className="md:hidden">
             <div className="relative">
               {/* Carousel Container */}
-              <div className="overflow-hidden rounded-2xl">
+              <div 
+                className="overflow-hidden rounded-2xl"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
                 <div
                   className="flex transition-transform duration-300 ease-out"
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -149,6 +176,7 @@ export function Portfolio() {
                   {portfolioItems.map((item, index) => (
                     <div key={index} className="w-full flex-shrink-0 px-1">
                       <div className="bg-gradient-to-br from-[#f0f6ff] to-white rounded-2xl p-5 border border-[#072AC8]/10 shadow-lg overflow-hidden flex flex-col">
+                        {/* Browser mockup with arrows positioned relative to it */}
                         <div className="relative mb-5">
                           <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#072AC8]/10">
                             <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-3 py-2 flex items-center gap-2 border-b">
@@ -171,6 +199,21 @@ export function Portfolio() {
                           <div className="absolute -top-2 right-2 bg-gradient-to-r from-[#072AC8] to-[#0095FF] text-white px-3 py-1 rounded-full font-bold text-xs shadow-lg">
                             Live Website
                           </div>
+                          {/* Navigation Arrows - positioned at 50% of screenshot */}
+                          <button
+                            onClick={prevSlide}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] active:bg-[#072AC8] active:text-white transition-all z-10"
+                            aria-label="Previous slide"
+                          >
+                            <ChevronLeft className="w-5 h-5" />
+                          </button>
+                          <button
+                            onClick={nextSlide}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] active:bg-[#072AC8] active:text-white transition-all z-10"
+                            aria-label="Next slide"
+                          >
+                            <ChevronRight className="w-5 h-5" />
+                          </button>
                         </div>
                         <div className="flex-1 flex flex-col">
                           <h3 className="text-xl font-black text-[#072AC8] mb-2">{item.name}</h3>
@@ -195,22 +238,6 @@ export function Portfolio() {
                   ))}
                 </div>
               </div>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] hover:bg-[#072AC8] hover:text-white transition-all z-10"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-[#072AC8] hover:bg-[#072AC8] hover:text-white transition-all z-10"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
             </div>
 
             {/* Dots Indicator */}
