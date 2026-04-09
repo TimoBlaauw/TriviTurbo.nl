@@ -29,6 +29,28 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  openGraph: {
+    title: 'TriviTurbo | Stop met Platformkosten Betalen',
+    description: 'Het Directe Boekingskanaal-systeem dat in 90 dagen 3 directe boekingen oplevert voor vakantiehuiseigenaren. Bespaar €2.000–€5.000 per jaar aan platformkosten.',
+    url: 'https://triviturbo.nl',
+    siteName: 'TriviTurbo',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1456,
+        height: 816,
+        alt: 'TriviTurbo - Stop met geld verliezen aan Airbnb en Booking.com',
+      },
+    ],
+    locale: 'nl_NL',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TriviTurbo | Stop met Platformkosten Betalen',
+    description: 'Het Directe Boekingskanaal-systeem dat in 90 dagen 3 directe boekingen oplevert voor vakantiehuiseigenaren.',
+    images: ['/og-image.jpg'],
+  },
 }
 
 export const viewport: Viewport = {
